@@ -1,0 +1,84 @@
+.image_swiper {
+
+
+  .swiper-slide {
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 650px;
+    @include mobile-only {
+      height: 78vh;
+    }
+  }
+
+  &--container {
+    height: 100%;
+  }
+
+  &--title {
+    margin-bottom: 2rem;
+  }
+
+  &--inner-container {
+    @include max-width(58);
+    text-align: center;
+    margin-top: 5rem;
+    position: relative;
+  }
+
+  &--icon-malek svg {
+    max-width: 80%;
+    @include mobile-only {
+      max-width: 60%;
+    }
+  }
+
+  &--desc {
+    @include max-width(47.5);
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    max-width: 36rem;
+    p {
+      font-size: 1.6rem;
+    }
+  }
+
+
+
+  .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #4B4232;
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    top: 58%;
+  }
+
+  .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+    @include tablet-up {
+      right: -50px;
+
+    }
+    left: auto;
+    @include mobile-only {
+      display: none
+    }
+  }
+
+  .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    @include tablet-up {
+      left: -50px;
+
+    }
+    right: auto;
+
+    @include mobile-only {
+      display: none
+    }
+  }
+}

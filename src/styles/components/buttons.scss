@@ -1,0 +1,49 @@
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  border: 0;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.button-brown {
+  background: $lightBrown;
+  color: $white;
+  width: 100%;
+  padding: 20px 0;
+  @include good-reg-16;
+  @include letter-spacing(50);
+  border: none;
+  text-transform: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-transform: uppercase;
+
+  .dash {
+    margin: 0 10px;
+  }
+
+}
+
+.button-circle, .shopify-challenge__button {
+  @include good-med-13;
+  background: no-repeat;
+  border: 1.5px solid $brown;
+  padding: 1.4rem 4rem;
+  border-radius: 5rem;
+  text-transform: uppercase;
+  &:hover {
+    background: $brown;
+    color: white;
+  }
+}

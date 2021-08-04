@@ -1,0 +1,31 @@
+<div class="main_nav--dropdown nav_dropdown">
+  <div class="">
+    <ul class="nav_dropdown--ul d-flex">
+
+      {% if link.type == 'collection_link' and link.object.image %}
+        <li class="nav_dropdown--image-container" style="background-image: url( {{ link.object.image | img_url: '470x' }} )"></li>
+      {% else %}
+        <li class="nav_dropdown--image-container" style="background-image: url( {{ 'nav-img.jpg' | asset_url }} )"></li>
+      {% endif %}
+
+      {% for childlink in link.links %}
+        <li class="nav_dropdown--list-container">
+          <span class="nav_dropdown--title">
+            {{ childlink.title }}
+          </span>
+          {% if childlink.links != blank %}
+            <ul class="nav_dropdown--list">
+              {% for grandchildlink in childlink.links %}
+                <li class="nav_dropdown--li">
+                  <a href="{{ grandchildlink.url }}">
+                    {{ grandchildlink.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

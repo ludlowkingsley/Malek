@@ -1,0 +1,85 @@
+<section class="founders" style="background-color: {{ section.settings.bg_color }};">
+  <div class="container">
+    <div class="row founders--container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'founders' %}
+            <div class="col-md founders--cta">
+                {% if block.settings.img != blank %}
+                  {% include 'responsive-image' with image: block.settings.img, image_class: "founders--img", wrapper_class: "wrapper-css-class", max_width: 260, max_height: 360 %}
+                {% endif %}
+                {% if block.settings.name != blank %}
+                  <h3 class="founders--name">{{ block.settings.name }}</h3>
+                {% endif %}
+                {% if block.settings.title != blank %}
+                  <p class="founders--title">{{ block.settings.title }}</p>
+                {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <div class="founders--descriptions">
+      {% if section.settings.desc != blank %}
+        <div class="founders--desc">
+          {{ section.settings.desc }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.desc_2 != blank %}
+        <div class="founders--line"></div>
+        <div class="founders--desc-2">
+          {{ section.settings.desc_2 }}
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Founders Content",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type": "richtext",
+        "id": "desc_2",
+        "label": "Description 2"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "founders",
+        "name": "Founders",
+        "limit": 2,
+        "settings": [
+          {
+            "type": "text",
+            "id": "name",
+            "label": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

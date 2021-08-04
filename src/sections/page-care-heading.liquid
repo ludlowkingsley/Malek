@@ -1,0 +1,33 @@
+{% include "page-title" with title: section.settings.title, subtitle: section.settings.subtitle, show_icon: section.settings.show_icon, desc: section.settings.desc %}
+
+
+
+{% schema %}
+  {
+    "name": "Care Heading",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "subtitle",
+        "type": "text",
+        "label": "Subtitle"
+      },
+      {
+         "type": "checkbox",
+         "id": "show_icon",
+         "label": "Show Icon",
+         "default": false,
+         "info": "Check to show Malek Icon"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      }
+    ]
+  }
+{% endschema %}

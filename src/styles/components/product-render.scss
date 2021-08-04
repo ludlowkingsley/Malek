@@ -1,0 +1,40 @@
+.product_render {
+  padding: 5rem 0;
+  background: $grey;
+  @include mobile-only {
+    text-align: center;
+  }
+  &--heading {
+    text-align: center;
+    @include max-width(75)
+    margin-bottom: 5rem;
+  }
+
+  &--render {
+    text-align: center;
+    margin-bottom: 7rem;
+  }
+
+  &--btn-container {
+    text-align: center;
+  }
+
+  .info_list {
+    margin-bottom: 5rem;
+
+    &--title, &--desc {
+      @include max-width(40);
+    }
+
+    &--title {
+      @include good-reg-20;
+      text-transform: uppercase;
+    }
+
+    &--desc {
+      @include good-reg-16;
+    }
+  }
+
+
+}

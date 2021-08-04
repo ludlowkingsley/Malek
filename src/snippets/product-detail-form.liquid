@@ -1,0 +1,78 @@
+
+  {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+    {% unless product.has_only_default_variant %}
+      {% for option in product.options_with_values %}
+
+        {% include 'swatch' with option.name as swatch %}
+        <div class="js hide">
+            {% for value in option.values %}
+              {% assign handleTxt = value | downcase %}
+              {% assign handleTxt = handleTxt | replace: ' ', '-' %}
+              {% assign handleTxt = handleTxt | replace: '&', 'and' %}
+
+            
+
+              <input type="radio" id="Option{{ option.position }}-{{ handleTxt }}-{{product.id}}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+              <label for="Option{{ option.position }}-{{ handleTxt }}-{{product.id}}">{{ value }}</label>
+            {% endfor %}
+
+        </div>
+      {% endfor %}
+    {% endunless %}
+
+    <noscript>
+      <select name="id">
+        {% for variant in product.variants %}
+          <option
+            {% if variant == current_variant %}selected="selected"{% endif %}
+            {% unless variant.available %}disabled="disabled"{% endunless %}
+            value="{{ variant.id }}">
+              {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+    </noscript>
+
+
+    <!-- <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+    <input type="number" id="Quantity" name="quantity" value="1" min="1"> -->
+
+    {% include "product-care" %}
+
+
+    <button
+      type="submit"
+      name="add"
+      class="button-brown"
+      data-submit-button
+      {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+        <span data-submit-button-text>
+          {% if current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </span>
+
+        <span class="dash">-</span>
+
+        <div data-price-wrapper>
+          <span data-product-price>
+            {{ current_variant.price | money_without_trailing_zeros }}
+          </span>
+
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+            <s data-compare-price>
+              {% if current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money_without_trailing_zeros }}
+              {% endif %}
+            </s>
+          {% endif %}
+        </div>
+
+    </button>
+
+
+
+  {% endform %}

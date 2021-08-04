@@ -1,0 +1,145 @@
+<section class="faq-container">
+  <div class="container">
+    <article id="orders" class="faq_article hide">
+      <h2 class="faq_article--title">Orders & Shipping</h2>
+      {% for block in section.blocks %}
+        {% case block.settings.category %}
+          {% when 'orders_shipping' %}
+            {% include "accordion" %}
+            <script type="text/javascript">
+              $('#orders').removeClass('hide');
+            </script>
+        {% endcase %}
+      {% endfor %}
+    </article>
+
+    <article id="returns" class="faq_article hide">
+      <h2 class="faq_article--title">Returns</h2>
+      {% for block in section.blocks %}
+        {% case block.settings.category %}
+          {% when 'returns' %}
+            {% include "accordion" %}
+            <script type="text/javascript">
+              $('#returns').removeClass('hide');
+            </script>
+        {% endcase %}
+      {% endfor %}
+    </article>
+
+
+    <article id="care" class="faq_article hide">
+      <h2 class="faq_article--title">Care</h2>
+      {% for block in section.blocks %}
+        {% case block.settings.category %}
+          {% when 'care' %}
+            {% include "accordion" %}
+            <script type="text/javascript">
+              $('#care').removeClass('hide');
+            </script>
+        {% endcase %}
+      {% endfor %}
+    </article>
+
+    <article id="company" class="faq_article hide">
+      <h2 class="faq_article--title">Company</h2>
+      {% for block in section.blocks %}
+        {% case block.settings.category %}
+          {% when 'company' %}
+            {% include "accordion" %}
+            <script type="text/javascript">
+              $('#company').removeClass('hide');
+            </script>
+        {% endcase %}
+      {% endfor %}
+    </article>
+  </div>
+</section>
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "FAQ",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "id": "more_title",
+        "type": "text",
+        "label": "More Questions Title"
+      },
+      {
+        "type": "richtext",
+        "id": "more_desc",
+        "label": "More Questions Description"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "More Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "MOre Button link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "accordion",
+        "name": "Accordion",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+             "type": "select",
+             "id": "category",
+             "label": "Category",
+             "options": [
+               {
+                 "group": "orders_shipping",
+                 "value": "orders_shipping",
+                 "label": "Orders & Shipping"
+               },
+               {
+                 "group": "returns",
+                 "value": "returns",
+                 "label": "Returns"
+               },
+               {
+                 "group": "care",
+                 "value": "care",
+                 "label": "Care"
+               },
+               {
+                 "group": "company",
+                 "value": "company",
+                 "label": "Company"
+               }
+             ]
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

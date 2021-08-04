@@ -1,0 +1,40 @@
+.legal {
+  padding: 10rem 0;
+  &--ul {
+    padding: 0;
+    @include tablet-up {
+      position: fixed;
+    }
+  }
+
+  &--li {
+    margin-bottom: 15px;
+    a {
+      @include good-reg-18;
+      color: $lightBrown;
+    }
+  }
+
+  &--title {
+    @include tiempos-reg-40;
+    border-bottom: 1px solid $brown;
+    margin-bottom: 25px;
+  }
+
+  &--section {
+    margin-bottom: 50px;
+  }
+
+  &--section-title {
+    @include good-reg-20;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+
+  &--section-desc {
+    @include good-reg-16;
+    color: #6E634F;
+    line-height: 25px;
+  }
+
+}

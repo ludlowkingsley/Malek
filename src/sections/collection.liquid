@@ -1,0 +1,93 @@
+
+<script type="text/javascript">
+  console.log( {{ collection | json }} );
+</script>
+
+{% paginate collection.products by 12 %}
+  <header role="banner">
+    <div class="container">
+      <div class="collection-heading">
+
+        <h1>{{ collection.title }}</h1>
+
+          <div class="filter_readout d-flex mobile-hide">
+            {% if current_tags %}
+              <div class="filter_readout--selected">
+              </div>
+              <div class="filter_readout--clear">
+                <a href="/collections/{{ collection.handle }}">Clear Filter</a>
+              </div>
+            {% endif %}
+          </div>
+
+      </div>
+
+
+
+      <div class="collection-filtering-container d-flex justify-content-between mobile-hide">
+        <div class="collection-filter-container">
+          {% include "collection-filter" %}
+        </div>
+        <div class="collection-sort-by-container">
+          {% include "collection-sort-by" %}
+        </div>
+      </div>
+
+      <div class=" desktop-hide">
+        <div class="mobile-filter-top d-flex justify-content-between">
+          <ul class="d-flex">
+            <li class="collection_filter">
+        			<a href="/collections/all">SHOP ALL</a>
+        		</li>
+        		<li class="collection_filter">
+        			<a href="/collections/new">NEW</a>
+        		</li>
+            <li class="collection_filter">
+        			<a href="/collections/sale">SALE</a>
+        		</li>
+          </ul>
+
+          <div class="">
+            <a href="#" class="show-filters">
+              <label for="">ALL FILTERS</label>
+              <span></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="mobile-filter">
+          {% include "collection-filter" %}
+          {% include "collection-sort-by" %}
+        </div>
+      </div>
+      <div class="filter_readout d-flex desktop-hide">
+        {% if current_tags %}
+          <div class="filter_readout--selected">
+          </div>
+          <div class="filter_readout--clear">
+            <a href="/collections/{{ collection.handle }}">Clear Filter</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+
+
+
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="cols-3">
+        {% for product in collection.products %}
+          {% include "product-content" with quickAdd: true %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+{% endpaginate %}

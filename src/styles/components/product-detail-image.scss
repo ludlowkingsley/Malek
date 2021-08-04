@@ -1,0 +1,24 @@
+.product_detail {
+  &__img-wrapper {
+    padding-bottom: 100%;
+    max-width: 100% !important;
+    max-height: 100% !important;
+
+    &:before {
+      content: unset;
+    }
+  }
+
+  &__img {
+    max-width: 100% !important;
+    max-height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center center;
+    object-position: center center;
+    -webkit-transition: opacity 0.4s cubic-bezier(.25, .46, .45, .94);
+    -o-transition: opacity 0.4s cubic-bezier(.25, .46, .45, .94);
+    -moz-transition: opacity 0.4s cubic-bezier(.25, .46, .45, .94);
+    transition: opacity 0.4s cubic-bezier(.25, .46, .45, .94);
+  }
+}

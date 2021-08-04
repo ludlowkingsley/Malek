@@ -1,0 +1,147 @@
+.swatch-heading {
+  // padding-right: 2rem;
+  .size-guide-trigger {
+    margin-bottom: 15px;
+    span {
+      @include good-reg-16;
+      margin-left: 5px;
+    }
+  }
+}
+
+.size_guide {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(203, 188, 168, .75);
+  z-index: 1050;
+  text-align: center;
+
+  .container {
+    max-width: 109rem;
+    @include mobile-only {
+      max-width: 90%;
+    }
+  }
+
+  &--close-container {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    cursor: pointer;
+  }
+
+  &--title {
+    text-align: center;
+    @include tiempos-reg-40;
+    line-height: 4rem;
+  }
+
+
+
+  &--table {
+    background: $white;
+    width: 100%;
+    position: relative;
+    padding: 5rem 0;
+  }
+
+  &--inner-container {
+    max-width: 85%;
+    width: 85%;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &--toggle-container {
+    margin-bottom: 3rem;
+  }
+
+  &--toggle {
+    @include good-reg-12;
+    color: $lightBrown;
+    margin: 0 10px;
+    &.active {
+      @include good-reg-12;
+      font-weight: bold;
+      color: $brown;
+    }
+
+  }
+
+  &--t {
+    overflow: scroll;
+  }
+
+
+  &--flex-container, .container {
+    width: 100%;
+    height: 100%;
+  }
+
+  table {
+    border: unset;
+
+    @media (min-width: 900px) {
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    tr {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      &:first-of-type {
+        td {
+          @include good-med-12;
+          @include letter-spacing(50);
+          border-top: unset;
+        }
+      }
+
+      &:last-of-type {
+        td {
+          border-bottom: unset;
+
+        }
+      }
+
+      td {
+        width: unset !important;
+        @include good-reg-12;
+        text-transform: uppercase;
+        text-align: center;
+        border: .5px solid #D3C0AC;
+        padding: 0.9rem 0;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+           -moz-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+           -moz-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        &:first-of-type {
+          @include good-med-12;
+          border-left: unset;
+        }
+
+        &:last-of-type {
+          @include good-med-12;
+          border-right: unset;
+        }
+      }
+    }
+  }
+
+}

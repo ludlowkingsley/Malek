@@ -1,0 +1,86 @@
+<section class="contact_ctas" style="background-color: {{ section.settings.bg_color }};">
+  <div class="container">
+    <div class="row contact_ctas--container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'ctas' %}
+            <div class="col-md contact_ctas--cta">
+                {% if block.settings.img != blank %}
+
+                  {% include 'responsive-image' with image: block.settings.img, image_class: "contact_ctas--img", wrapper_class: "wrapper-css-class", max_width: 425, max_height: 280 %}
+                {% endif %}
+                {% if block.settings.title != blank %}
+                  <h3 class="contact_ctas--title">{{ block.settings.title }}</h3>
+                {% endif %}
+
+                {% if block.settings.button_link != blank %}
+                  <div class="contact_ctas--btn-container">
+                    <a href="{{ block.settings.button_link }}">
+                      <button type="button" name="button" class="button-circle">
+                        {% if block.settings.button_label %}
+                          {{ block.settings.button_label }}
+                        {% else %}
+                          MORE DETAILS
+                        {% endif %}
+                      </button>
+                    </a>
+                  </div>
+
+                {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Contact Content",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#EFEDE8"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "ctas",
+        "name": "CTAs",
+        "limit": 2,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

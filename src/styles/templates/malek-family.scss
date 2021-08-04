@@ -1,0 +1,64 @@
+.family-heading {
+  background: $romance;
+}
+
+.founders {
+  padding: 0 0 5rem;
+
+
+  @include mobile-only {
+    padding: 0 0 5rem;
+  }
+
+  &--cta {
+    @include mobile-only {
+      margin-bottom: 5rem;
+
+    }
+  }
+
+  &--name {
+    @include good-reg-20;
+    text-transform: uppercase;
+        margin-top: 1.5rem;
+  }
+
+  &--title {
+    @include good-reg-16;
+  }
+
+  &--container {
+    text-align: center;
+    @include max-width(69.5);
+  }
+
+  &--img {
+    border-radius: 20rem;
+  }
+
+  &--descriptions {
+    @include max-width(70);
+    text-align: center;
+    padding: 8rem 0 5rem;
+  }
+
+  &--desc, &--desc p {
+    @include tiempos-reg-40;
+    line-height: 53px;
+  }
+
+  &--desc-2, &--desc-2 p {
+    @include good-reg-16;
+
+  }
+
+  &--line {
+    height: 60px;
+    border-right: 1px solid black;
+    width: 1px;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    margin: 15px auto;
+  }
+
+}

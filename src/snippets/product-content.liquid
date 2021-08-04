@@ -1,0 +1,80 @@
+{% assign hasColor = false %}
+
+<div class="product_content col-md {{ class }}">
+  {% render 'hulkapps-wishlist-collection-btn', productId: product.id, variantId: product.selected_or_first_available_variant.id %}
+
+<!-- {% render 'hulkapps-wishlist-collection-btn', productId: product.id, variantId: product.selected_or_first_available_variant.id %} -->
+  {% if product.featured_image != blank %}
+    <a href="{{ product.url }}" class="featured-collection-item">
+
+
+
+      <div class="product_content--img-hover "  data-product-id="{{ product.id }}">
+        {%- for variant in product.variants -%}
+          <div class="variant-{{ variant.id }} {% if forloop.first %} active {% else %} hide {% endif %}" data-variant-id="{{ variant.id }}">
+            {%- if variant.featured_image != blank -%}
+              {% include 'responsive-image' with image: variant.featured_image, image_class: "product_content--img", wrapper_class: "product_content--img-wrapper", max_width: 700, max_height: 800 %}
+            {%- else -%}
+              {% include 'responsive-image' with image: product.featured_image, image_class: "product_content--img", wrapper_class: "product_content--img-wrapper", max_width: 700, max_height: 800 %}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+        {%- if product.images[1] != blank -%}
+          {% include 'responsive-image' with image: product.images[1], image_class: "product_content--hover-img", wrapper_class: "product_content--hover-img-wrapper", max_width: 700, max_height: 800 %}
+        {%- endif -%}
+        {%- if quickAdd -%}
+          {% include "product-quick-add" %}
+        {%- endif -%}
+      </div>
+
+
+
+
+      {% comment %}
+        <div class="lazyload product_content--image img-{{ product.id }}" data-bgset="{% include 'responsive-bg-image', image: product.featured_image %}" data-product-id="{{ product.id }}">
+          {%- if quickAdd -%}
+            {% include "product-quick-add" %}
+          {%- endif -%}
+        </div>
+      {% endcomment %}
+    </a>
+  {% endif %}
+
+
+  <div class="product_content--info">
+    <a href="{{ product.url }}" class="featured-collection-item">
+      <h3 class="product_content--title">{{ product.title | escape }}</h3>
+    </a>
+    {% include "product-price" %}
+
+    <div class="product_content--desc">
+      {% if product.metafields.custom_fields["short_description"] != blank %}
+        <p>{{ product.metafields.custom_fields["short_description"] | strip_html }}</p>
+      {% endif %}
+    </div>
+
+  </div>
+
+  {%- if quickAdd -%}
+    {% if hasColor == true %}
+      <div class="product_content--swatch-container swatch-container-{{ product.id }} mobile-hide">
+        {% if product.variants.size > 1 %}
+        {% for option in product.options_with_values %}
+          {% if option.name == 'Color' %}
+            {% include 'swatch' with option.name as swatch, flex: true %}
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
+  {%- endif -%}
+
+  {% if product.images[1] %}
+  <style media="screen">
+    .img-{{ product.id }}:hover {
+      background-image: url( {{ product.images[1] | img_url: '700x' }} ) !important;
+    }
+  </style>
+
+  {% endif %}
+</div>

@@ -1,0 +1,80 @@
+@charset 'UTF-8';
+
+/**
+ * [replace with theme name] | Built with Slate
+ */
+@import '~normalize.css/normalize';
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+
+// Settings
+@import './variables';
+
+// Tools
+@import './tools/mixins';
+@import './tools/functions';
+
+
+
+// Core
+@import './core/forms';
+@import './core/helpers';
+@import './core/layout';
+@import './core/media';
+@import './core/responsive-tables';
+@import './core/rte';
+@import './core/typography';
+@import './core/grid';
+
+// Components
+@import './components/announcement-bar';
+@import './components/buttons';
+@import './components/accordion';
+@import './components/page-title';
+@import './components/responsive-images';
+@import './components/address-forms';
+@import './components/navigation-desktop';
+@import './components/navigation-mobile';
+@import './components/footer';
+@import './components/swiper';
+@import './components/swatch';
+@import './components/ticker';
+@import './components/collection-filter';
+@import './components/product-detail-image';
+@import './components/product-content';
+@import './components/product-care';
+@import './components/product-branded-content';
+@import './components/product-branded-icon-set';
+@import './components/product-render';
+@import './components/product-material-highlights';
+@import './components/selectric';
+
+// Sections
+@import './sections/collection-list';
+@import './sections/featured-collection';
+@import './sections/image-text-swiper';
+@import './sections/image-swiper';
+@import './sections/size-guide';
+@import './sections/more-slider';
+@import './sections/yotpo';
+
+// Templates
+@import './templates/customers/account';
+@import './templates/not-found';
+@import './templates/care';
+@import './templates/faq';
+@import './templates/legal';
+@import './templates/careers';
+@import './templates/newsletter';
+@import './templates/contact';
+@import './templates/gift_card';
+@import './templates/product';
+@import './templates/collections';
+@import './templates/malek-family';
+@import './templates/our-materials';
+@import './templates/our-history';
+@import './templates/search';
+@import './templates/cart';
+@import './templates/wishlist';

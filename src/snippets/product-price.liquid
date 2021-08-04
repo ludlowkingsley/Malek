@@ -1,0 +1,21 @@
+
+{% assign template = template.name | handle %}
+<div class="{% if template == 'product' %}product_details--price{% else %}product_content--price{% endif %}">
+  {% if product.compare_at_price > product.price %}
+    {% if product.price_varies %}
+      {%- assign sale_price = product.price | money_without_trailing_zeros -%}
+      {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+    {% else %}
+      {{ 'products.product.on_sale' | t }}
+      {{ product.price | money_without_trailing_zeros }}
+    {% endif %}
+  {% else %}
+    {% if product.price_varies %}
+      {%- assign priceMax = product.price_max | money_without_trailing_zeros -%}
+      {%- assign priceMin = product.price_min | money_without_trailing_zeros -%}
+      {{ priceMin }} - {{ priceMax }}
+    {% else %}
+      {{ product.price | money_without_trailing_zeros }}
+    {% endif %}
+  {% endif %}
+</div>

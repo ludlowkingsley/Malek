@@ -1,0 +1,14 @@
+.faq-container {
+  padding: 10rem 0;
+
+  .container {
+    @include max-width(94);
+  }
+}
+
+.faq_article {
+  margin-bottom: 3rem;
+  &--title {
+    @include tiempos-reg-40;
+  }
+}

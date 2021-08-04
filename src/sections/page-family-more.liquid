@@ -1,0 +1,117 @@
+<section class="more">
+  <div class="mobile-container">
+    <div class="row">
+      <aside class="col-md-3 d-md-flex flex-column justify-content-between">
+        <h3 class="more--title">{{ section.settings.title }}</h3>
+        <div class="more--arrows d-flex">
+          <div class="more--previous-button">
+            {% include "icon-arrow-left" %}
+          </div>
+          <div class="more--next-button">
+            {% include "icon-arrow-right" %}
+          </div>
+        </div>
+
+
+      </aside>
+      <div class="more--swiper-container swiper-container col-md-9">
+        <div class="swiper-wrapper">
+          {% assign count = 1 %}
+          {% assign size = section.blocks.size %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'slide' %}
+                <div class="swiper-slide lazyload" style="">
+                  <div class="more--slide-container">
+                    <img class="more--img" src="{{ block.settings.img | img_url: 'x330' }}" alt="" style="max-height: 332px; max-width: unset;">
+                    <figcaption class="more--caption">{{ block.settings.title }}</figcaption>
+                  </div>
+
+                </div>
+            {% endcase %}
+          {% endfor %}
+          <div class="swiper-slide lazyload" style="">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style media="screen">
+  .more--swiper-container .swiper-slide {
+    width: unset !important;
+  }
+
+  .more--swiper-container figcaption {
+    max-width: 22.2rem;
+    margin: auto;
+  }
+
+  .more--next-button, .more--previous-button {
+    cursor: pointer;
+  }
+</style>
+
+<script type="text/javascript">
+var moreSwiper = new Swiper('.more--swiper-container', {
+  direction: 'horizontal',
+  loop: false,
+  observer: true,
+  observeParents: true,
+  spaceBetween: 50,
+  slidesPerView: 4,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+});
+
+
+$(document).on('click', '.more--previous-button', function() {
+  moreSwiper.slidePrev();
+});
+
+$(document).on('click', '.more--next-button', function() {
+  moreSwiper.slideNext();
+});
+
+</script>
+
+
+
+{% schema %}
+  {
+    "name": "More Malek Family",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "More Malek Family"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Image with text"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

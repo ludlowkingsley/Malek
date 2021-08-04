@@ -1,0 +1,25 @@
+<section class="page_title_container">
+  <div class="container">
+    {% if title != blank %}
+      <h1 class="{% if subtitle != blank %}page_title_container--title{% else %}page_title_container--subtitle{% endif %} ">
+        {{ title }}
+      </h1>
+    {% endif %}
+
+    {% if show_icon %}
+      <div class="page_title_container--icon">
+        {% include "icon-malek-icon" %}
+
+      </div>
+    {% endif %}
+
+    {% if subtitle != blank %}
+      <h2 class="page_title_container--subtitle">{{ subtitle | strip_html }}</h2>
+    {% endif %}
+    {% if desc != blank %}
+      <div class="page_title_container--desc">
+        {{ desc }}
+      </div>
+    {% endif %}
+  </div>
+</section>

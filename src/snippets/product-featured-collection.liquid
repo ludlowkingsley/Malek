@@ -1,0 +1,56 @@
+{% if product.metafields.custom_fields["featured_collection"] != blank %}
+
+  <section class="featured_collection">
+    <div class="container">
+      <div class="">
+        {% for item in product.metafields.custom_fields["featured_collection"] %}
+          {% if item["title"] != blank %}
+            <h2 class="featured_collection--title">{{ item["title"] | escape }}</h2>
+          {% endif %}
+          {% if item["featured_collection"] != blank %}
+            {%- assign collection = collections[item["featured_collection"]] -%}
+            <div class="cols-3 mobile-hide">
+              {% for product in collection.products limit: 3 %}
+                {% include "product-content" %}
+              {% endfor %}
+            </div>
+
+            <div class="desktop-hide">
+              <div class="featured-collection-swiper swiper-container">
+                <div class="swiper-wrapper">
+                  {% for product in collection.products limit: 3 %}
+                      {% include "product-content" with class: 'swiper-slide' %}
+                  {% endfor %}
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+
+          {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+  </section>
+
+{% endif %}
+
+<script type="text/javascript">
+var imageSwiper = new Swiper('.featured-collection-swiper', {
+  direction: 'horizontal',
+  loop: true,
+  observer: true,
+  observeParents: true,
+  slidesPerView: 2,
+  spaceBetween: 10,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  }
+});
+</script>

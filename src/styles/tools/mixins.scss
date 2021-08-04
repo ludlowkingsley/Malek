@@ -1,0 +1,524 @@
+/**
+ * Sets a media query for the specified breakpoint
+ *
+ * Accepts:
+ * - $media-query: {String} Breakpoint variable (list found in variables.scss)
+ *
+ * Usage:
+ * .selector {
+ *   @include media-query($medium-up) {
+ *     color: red;
+ *   }
+ * }
+ */
+@mixin media-query($media-query) {
+  $breakpoint-found: false;
+
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @if $media-query == $name and $declaration {
+      $breakpoint-found: true;
+
+      @media only screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+}
+
+/**
+ * Outputs list of transition properties
+ *
+ * Accepts:
+ * - $transitions: {String} List of transition properties to set
+ *
+ * Usage:
+ * .selector {
+ *   @include transition(width, height 0.5s ease-in);
+ * }
+ */
+@mixin transition($transitions...) {
+  $output: ();
+
+  @each $transition in $transitions {
+    $output: append($output, get-transition-properties($transition), comma);
+  }
+  transition: $output;
+}
+
+/**
+ * Forces an element to self-clear its children
+ *
+ * Usage:
+ * .selector {
+ *   @include clearfix;
+ * }
+ */
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  // stylelint-disable-next-line
+  *zoom: 1;
+}
+
+/**
+ * Hide element but make it accessible to screen readers
+ *
+ * Usage:
+ * .selector {
+ *   @include visually-hidden;
+ * }
+ */
+@mixin visually-hidden() {
+  // stylelint-disable-next-line
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+/**
+ * Reverse the properties applied by @mixin visually-hidden
+ *
+ * Accepts:
+ * - $position: {String} Positioning method for element
+ *
+ * Usage:
+ * .selector {
+ *   @include visually-shown(relative);
+ * }
+ */
+@mixin visually-shown($position: inherit) {
+  // stylelint-disable-next-line
+  position: $position !important;
+  overflow: auto;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: auto;
+}
+
+
+
+@mixin max-width($width) {
+  max-width: $width + rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/**
+ * FONTS
+ *
+ */
+
+ @mixin letter-spacing($spacing) {
+   letter-spacing: ($spacing / 1000) * 1em;
+ }
+
+
+@mixin tiempos-reg-68 {
+  // font-size: 68px;
+  // @include rfs(68);
+  font-size: 6.2rem;
+  line-height: 65px;
+  // line-height: normal;
+  font-family: $tiempos;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  @include mobile-only {
+    font-size: 5.1rem;
+    line-height: 53px;
+  }
+}
+
+@mixin tiempos-reg-40 {
+  // font-size: 40px;
+  line-height: 65px;
+
+  font-size: 3.8rem;
+  // line-height: normal;
+  font-family: $tiempos;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  @include mobile-only {
+      line-height: 34px;
+      font-size: 3.1rem;
+  }
+
+}
+
+@mixin tiempos-reg-48 {
+  // font-size: 48px;
+  line-height: 53px;
+  font-size: 4.6rem;
+  // line-height: normal;
+
+  font-family: $tiempos;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  @include mobile-only {
+    font-size: 3.5rem;
+    line-height: 36px;
+  }
+
+
+}
+
+@mixin tiempos-reg-32 {
+  // font-size: 27px;
+  line-height: 39px;
+
+
+  font-size: 3rem;
+  // line-height: normal;
+
+  @include letter-spacing(20);
+  font-family: $tiempos;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin tiempos-reg-27 {
+  // font-size: 27px;
+  line-height: 33px;
+
+
+  font-size: 2.5rem;
+  // line-height: normal;
+
+  @include letter-spacing(20);
+  font-family: $tiempos;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin tiempos-reg-23 {
+  // font-size: 27px;
+  line-height: 28px;
+
+
+  font-size: 2.1rem;
+  // line-height: normal;
+
+  @include letter-spacing(20);
+  font-family: $tiempos;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin good-reg-22 {
+  // font-size: 22px;
+  line-height: 32px;
+
+  font-size: 2rem;
+  // line-height: normal;
+  font-family: $good;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin good-reg-20 {
+  // font-size: 20px;
+  line-height: 30px;
+
+  font-size: 1.8rem;
+  // line-height: normal;
+
+  font-family: $good;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  @include mobile-only {
+    font-size: 1.4rem;
+  }
+}
+
+@mixin good-reg-16 {
+  font-size: 16px;
+  @include letter-spacing(20);
+
+  font-size: 1.4rem;
+  // line-height: normal;
+
+  line-height: 22px;
+  font-family: $good;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  @include mobile-only {
+    font-size: 1.2rem;
+  }
+}
+
+@mixin good-reg-15 {
+  font-size: 15px;
+  line-height: 18px;
+
+  font-size: 1.3rem;
+  // line-height: normal;
+  font-family: $good;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin good-reg-14 {
+  // font-size: 14px;
+  @include letter-spacing(20);
+
+  font-size: 1.2rem;
+  // line-height: normal;
+
+
+  line-height: 24px;
+  font-family: $good;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+@mixin good-reg-18 {
+  // font-size: 18px;
+  line-height: 35px;
+
+  font-size: 1.6rem;
+  // line-height: normal;
+
+  font-family: $good;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin good-med-14 {
+  // font-size: 14px;
+  @include letter-spacing(56);
+  line-height: 17px;
+
+  font-size: 1.2rem;
+  // line-height: normal;
+
+  font-family: $good;
+}
+
+
+@mixin good-med-13 {
+  // font-size: 14px;
+  @include letter-spacing(56);
+  line-height: 16px;
+
+  font-size: 1.1rem;
+  // line-height: normal;
+
+  font-family: $good;
+  font-weight: 500;
+}
+
+@mixin good-med-12 {
+  // font-size: 14px;
+  @include letter-spacing(50);
+  line-height: 45px;
+
+  font-size: 1rem;
+  // line-height: normal;
+
+  font-family: $good;
+  font-weight: 200;
+}
+
+@mixin good-reg-12 {
+  // font-size: 14px;
+
+  line-height: 25px;
+
+  font-size: 1rem;
+
+
+  font-family: $good;
+
+}
+
+
+
+
+/* --------------------------------------------------------------------------
+Goodies
+-----------------------------------------------------------------------------*/
+@function rems($pxsize, $root: 16) {
+  @return ($pxsize/$root)*1rem;
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+@mixin tracking($tracking) {
+  letter-spacing: ($tracking / 1000) * 1em;
+}
+
+@mixin make-container-fixed() {
+  @include make-container();
+  @include make-container-max-widths();
+}
+
+@mixin make-col-auto() {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+@mixin object-fit($pos: 50% 50%, $fit: cover, $position: absolute) {
+  position: $position;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: $fit;
+     object-fit: $fit;
+  -o-object-position: $pos;
+     object-position: $pos;
+}
+
+@mixin aspect-ratio($width, $height, $pos: 50% 50%, $fit: cover, $position: absolute, $img: true) {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  padding-bottom: ($height / $width) * 100%;
+  height: 0;
+  img {
+    position: $position;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: $fit;
+       object-fit: $fit;
+    -o-object-position: $pos;
+       object-position: $pos;
+  }
+}
+
+@mixin aspect-ratio-container($width, $height) {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  padding-bottom: ($height / $width) * 100%;
+  height: 0;
+}
+
+@mixin abs($top: null, $right: null, $bottom: null, $left: null) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin headings-color($color) {
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: $color;
+  }
+}
+
+@mixin fullbleed() {
+  // see https://css-tricks.com/full-width-containers-limited-width-parents/
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw
+}
+
+@mixin custom-row-padding($padding) {
+  margin-right: -$padding;
+  margin-left: -$padding;
+}
+@mixin custom-col-padding($padding) {
+  padding-right: $padding;
+  padding-left: $padding;
+}
+
+@mixin uppercase() {
+  text-transform: uppercase;
+}
+
+@mixin make-col-eq() {
+  flex: 1 1 0;
+  max-width: 100%;
+}
+
+@mixin make-col-fit() {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+@mixin underline($color: #000, $thickness: 1px, $bottom: 100%, $inline: false) {
+  text-decoration: none;
+  background-image: linear-gradient($color, $color);
+  background-position: right $bottom;
+  background-repeat: no-repeat;
+  background-size: 100% $thickness;
+  @if $inline {
+    display: inline-block;
+  }
+}
+
+
+
+
+/* --------------------------------------------------------------------------
+Screen Size
+-----------------------------------------------------------------------------*/
+@mixin mobile-only {
+  @media (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

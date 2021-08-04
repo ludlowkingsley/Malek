@@ -1,0 +1,56 @@
+<header class="navigation_desktop" role="banner">
+  <div class="container">
+    <div class="d-md-flex justify-content-between align-items-center">
+      <div class="navigation_desktop--logo-container logo-container">
+        <a href="/" class="logo-image">
+          {% include "icon-logo" %}
+        </a>
+      </div>
+
+      <nav class="navigation_desktop--nav main_nav" role="navigation">
+        <ul class="main_nav--ul d-md-flex">
+          {% for link in linklists[section.settings.menu].links %}
+            {% if link.links != blank %}
+              <li class="main_nav--li dropdown-trigger">
+                <a href="{{ link.url }}">
+                  {{ link.title }}
+                </a>
+                {%- include 'navigation-dropdown' -%}
+              </li>
+            {% else %}
+              <li class="main_nav--li">
+                <a href="{{ link.url }}">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+
+
+      <nav class="navigation_desktop--secondary-nav">
+        <ul class="d-flex">
+          <li class="padding-0">
+            <a href="/apps/advanced-wishlist" class="icon-wishlist-heart-empty grid-wishlist-btn heart-wishlist-animation " style="padding: 0 !important;">
+              <i class="heart-hulk-animation"><i class="icon-wishlist-heart-empty"></i></i>
+            </a>
+
+          </li>
+          {%- include 'navigation-search' -%}
+          {% if shop.customer_accounts_enabled %}
+            <li>
+              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+            </li>
+          {% endif %}
+          <li>
+            <a href="/cart">
+              {{ 'layout.cart.title' | t }}
+              (<span class="cart-count">{{ cart.item_count }}</span>)
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

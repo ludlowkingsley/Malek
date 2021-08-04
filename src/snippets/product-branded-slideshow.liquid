@@ -1,0 +1,71 @@
+{% if product.metafields.custom_fields["branded_slideshow"] != blank %}
+
+  <section class="image_txt_swiper">
+    <div class="container">
+      <div class="image_txt_swiper--swiper-container swiper-container">
+        <div class="swiper-wrapper">
+
+          {% assign size = product.metafields.custom_fields["branded_slideshow"].size %}
+
+          {% for item in product.metafields.custom_fields["branded_slideshow"] %}
+            <div class="swiper-slide lazyload">
+              <div class="d-md-flex">
+                {% if item["image"] != blank %}
+                  <div class="image_txt_swiper--img-container">
+                    <img src="{{ item['image'] }}" alt="">
+                  </div>
+                {% endif %}
+                <div class="image_txt_swiper--txt-container d-flex flex-column justify-content-center">
+                  {% if item["title"] != blank %}
+                    <h2 class="image_txt_swiper--title">{{ item["title"] }}</h2>
+                  {% endif %}
+
+                  {% if item["description_1"] != blank %}
+                    <div class="image_txt_swiper--desc-1">
+                      {{ item["description_1"] }}
+                    </div>
+                    <div class="image_txt_swiper--line"></div>
+
+                  {% endif %}
+                  {% if item["description_2"] != blank %}
+                    <div class="image_txt_swiper--desc-2">
+                      {{ item["description_2"] }}
+                    </div>
+                  {% endif %}
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="image_txt_swiper--counter">0{{ forloop.index }} / 0{{ size }}</div>
+                    <div class="swiper-button-prev">
+                      {% include "icon-arrow-left" %}
+                    </div>
+                    <div class="swiper-button-next">
+                      {% include "icon-arrow-right" %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+  var imageSwiper = new Swiper('.image_txt_swiper--swiper-container', {
+    direction: 'horizontal',
+    loop: false,
+    observer: true,
+    observeParents: true,
+    spaceBetween: 120,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    }
+  });
+  </script>
+{% endif %}

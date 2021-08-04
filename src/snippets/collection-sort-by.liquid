@@ -1,0 +1,48 @@
+{% assign activeValue = '' %}
+<div class="sort_by">
+    <label class="sort_by--trigger mobile-hide" for="SortBy">Sort By
+        <span></span>
+        <!-- <span></span> -->
+    </label>
+    <label class="sort_by--trigger desktop-hide" for="SortBy">
+      SORT BY {% include "icon-arrow-down" %}
+    </label>
+    <ul class="sort_by--ul"  name="SortBy">
+      <li class="sort_by--option sort-option {% if 'price-descending' == collection.sort_by %}selected{% endif %}" data-value="price-descending">$ High to Low</li>
+      <li class="sort_by--option sort-option {% if 'price-ascending' == collection.sort_by %}selected{% endif %}" data-value="price-ascending">$ Low to High</li>
+    </ul>
+
+    {% if activeValue != blank %}
+      <div class="active">
+        <a href="{{ collection.url }}">{{ activeValue }}</a>
+      </div>
+    {% endif %}
+
+</div>
+
+<script>
+// Save existing sort parameters
+Shopify.queryParams = {};
+if(location.search.length) {
+    for(var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+    aKeyValue = aCouples[i].split('=');
+        if (aKeyValue.length > 1) {
+            Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+        }
+    }
+}
+
+$(document).on('click', '.sort-option', function(){
+  var value = $(this).attr('data-value');
+  Shopify.queryParams.sort_by = value;
+  location.search = new URLSearchParams(Shopify.queryParams).toString();
+});
+
+
+// Add existing sort parameters to current URL
+// document.querySelector('#SortBy').addEventListener('change', function(e) {
+//     var value = e.currentTarget.value;
+//     Shopify.queryParams.sort_by = value;
+//     location.search = new URLSearchParams(Shopify.queryParams).toString();
+// });
+</script>

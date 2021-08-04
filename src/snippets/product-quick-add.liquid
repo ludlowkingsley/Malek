@@ -1,0 +1,68 @@
+<div  class="product_content--select-container mobile-hide" data-variants='' >
+
+
+  <script type="text/javascript">
+    console.log({{ product | json }})
+  </script>
+
+
+  {% if product.variants.size > 1 %}
+    <div id="variants-{{ product.id }}" class="product_content--select">
+      {% for product_option in product.options_with_values %}
+        {% assign optionName = product_option.name %}
+        {% if optionName == 'Color' %}
+          {% assign hasColor = true %}
+        {% endif %}
+        {% if optionName != 'Color' %}
+          <div class="product_content--variant-select-container size-{{ product_option.values.size }} variant-select-container-{{ product.id }}" data-option-size="{{ product.options_with_values.size }}" data-position="{{ product_option.position }}" >
+            <h4 class="product_content--option-name">CHOOSE A {{ optionName }}</h4>
+            {% for value in product_option.values %}
+              {% assign optionTitle = value | downcase %}
+              {% assign price = 0 %}
+              {% for variant in product.variants %}
+                  {% for variantOption in variant.options %}
+                    {% assign variantTitle = variantOption | downcase %}
+                    {% if variantTitle == optionTitle %}
+                      {% assign price = variant.price %}
+                    {% endif %}
+                  {% endfor %}
+              {% endfor %}
+              <div class="product_content--input-container">
+                <input 
+                class="input-radio input-radio-{{ product.id }}"
+                data-product-id="{{ product.id }}"
+                type="radio" id="{{ value | downcase }}"
+                name="{{ optionName | downcase }}-{{ product.id }}"
+                value="{{ value | downcase }}" {% if forloop.index0 == 0 %} checked {% endif %}>
+                <label class="product_content--variant-label d-flex justify-content-between" for="{{ value | downcase }}"><span>{{ value }}</span><span>{{ price | money_without_trailing_zeros }}</span></label>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <script type="text/javascript">
+      var json = {{ product | json }};
+      json = encodeURIComponent(JSON.stringify(json));
+      $('#variants-{{ product.id }}').attr('data-obj', json);
+    </script>
+    {% endif %}
+
+  {%- assign current_variant = product.variants[0] -%}
+
+  <div class="product_content--quick-add-container quick-add-{{ product.id }}">
+    <button type="button"
+      name="button"
+      {% unless current_variant.available %} disabled {% endunless %}
+      class="button-brown quick-add-btn {% if product.variants.size > 1 %} has-variants {% endif %}"
+      data-variant-id="{{ product.variants[0].id }}"
+      data-product-id="{{ product.id }}">
+      {% if current_variant.available %}
+        QUICK ADD
+      {% else %}
+        SOLD OUT
+      {% endif %}
+    </button>
+  </div>
+
+</div>

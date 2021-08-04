@@ -1,0 +1,16 @@
+
+<li class="collection_filter">
+  <div class="collection_filter--trigger">Shop by {{ filterCategory }}{% include "icon-arrow-down" %}</div>
+  <ul class="collection_filter--dropdown-container">
+   {% for tag in collection.all_tags %}
+      {% if tag contains filterContains %}
+        {% assign tagName = tag | downcase %}
+        {% assign tagName = tag | remove: filterContains %}
+        <li class="d-flex collection_filter--filter-input-container">
+          <input class="collection_filter--filter-input hide" type="checkbox" name="{{ filterCategory }}" value="{{ tag | handle }}" {% if current_tags contains tag %} data-operation="remove" checked {% else %} data-operation="add" {% endif %}>
+          <label class="collection_filter--filter-label {% if current_tags contains tag %} active {% endif %}" for="{{ tag | handle }}">{{ tagName }}</label>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</li>

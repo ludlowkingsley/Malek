@@ -1,0 +1,39 @@
+.announcement_bar {
+  background: $beige;
+  text-align: center;
+  padding: 10px 0;
+  height: 5rem;
+  &--text {
+    a, p {
+      color: $white;
+      @include good-reg-16;
+      margin: 0;
+      @include mobile-only {
+        font-size: 12px;
+      }
+    }
+  }
+
+
+  .ticker {
+    padding: 0;
+    margin: 0;
+
+    .item {
+      margin: 0 25px;
+      position: relative;
+      top: 5px;
+      p, a {
+        text-transform: none;
+        color: $white;
+        @include good-reg-16;
+        margin: 0;
+        @include mobile-only {
+          font-size: 12px;
+        }
+      }
+
+    }
+  }
+
+}

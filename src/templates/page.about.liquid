@@ -1,0 +1,15 @@
+
+
+{% if page.handle == 'malek-family' %}
+  <div class="family-heading" style="background-image: url( {{ 'bg.png' | asset_url }} )">
+    {% section 'page-family-heading' %}
+    {% section 'page-family-founders' %}
+  </div>
+  {% section 'page-our-history' %}
+  {% section 'page-family-more' %}
+{% elsif page.handle == 'our-materials' %}
+  {% section 'page-materials-heading' %}
+  {% section 'page-materials-content' %}
+{% endif %}
+
+{% section 'newsletter' %}

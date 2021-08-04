@@ -1,0 +1,22 @@
+<li class="dropdown-trigger search">
+  <a href="/search" class="search">Search</a>
+  <div class="nav_dropdown search_dropdown">
+    <div class="container">
+      <form action="/search" method="get" role="search" class="search_dropdown--form d-flex ">
+        <label for="Search-{{ section.id }}" class="label-hidden">
+          {{ 'general.search.placeholder' | t }}
+        </label>
+        <input type="search"
+          name="q"
+          id="Search-{{ section.id }}"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+          class="search_dropdown--input"
+          >
+        <button type="submit" class="search_dropdown--button button">
+          {{ 'general.search.submit' | t }}
+        </button>
+      </form>
+    </div>
+  </div>
+</li>

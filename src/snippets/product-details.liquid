@@ -1,0 +1,28 @@
+<div class="product_details">
+  <div class="product_details--heading">
+    <h1 class="product_details--title">{{ product.title }}</h1>
+
+    <div class="product_details--yotpo-stars">
+      <div class="yotpo bottomLine"
+        data-appkey="TJzxVP36Ehkky8JLnU9knMOsSKgV4y2Sxu4U2pSw"
+        data-domain="{{shop.permanent_domain | escape }}"
+        data-product-id="{{ product.id }}"
+        data-product-models="{{ product.id }}"
+        data-name="{{ product.title | escape }}"
+        data-url="{{ shop.url }}{{ product.url }}"
+        data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+        data-description="{{ product.description | escape }}"
+        data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+    </div>
+    </div>
+
+
+    {% include 'product-price' %}
+  </div>
+  {% if product.description != blank %}
+    <div class="product_details--desc">
+      <!-- <p>{{ product.description | strip_html | truncate: 125 }}</p> -->
+      {{ product.description }}
+    </div>
+  {% endif %}
+</div>

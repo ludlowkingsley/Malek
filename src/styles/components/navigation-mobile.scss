@@ -1,0 +1,166 @@
+.navigation_mobile {
+  padding: 2.5rem 0;
+  background: $color-body;
+
+  @media (min-width: 1050px) {
+    display: none;
+  }
+
+  &--logo-container {
+    position: relative;
+    z-index: 1000;
+    margin-left: 1.5rem;
+    svg {
+      max-width: 113px;
+    }
+
+  }
+
+  &--cart {
+    a {
+      @include good-reg-14;
+      font-size: 14px;
+    }
+  }
+}
+
+
+.burger {
+  position: relative;
+  background: none;
+  border: none;
+  width: 26px;
+  height: 15px;
+  /* position: absolute; */
+  /* right: 30px; */
+  /* top: 50px; */
+  /* display: none; */
+  z-index: 201;
+  cursor: pointer;
+  background: unset;
+  padding: unset;
+
+  &:hover {
+    background: unset !important;
+  }
+
+  span {
+    display: block;
+    border-bottom: 1px solid $color-border;
+    width: 100%;
+    position: absolute;
+    height: 1px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  span:first-of-type {
+    top: 0;
+  }
+
+  span:nth-of-type(2) {
+    top: 50%;
+  }
+
+  span:last-of-type {
+    top: 100%;
+  }
+}
+
+@media (min-width: 1050px) {
+
+  .burger-container {
+    display: none;
+  }
+}
+
+@media (max-width: 1050px) {
+
+  .burger-container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nav-drawer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(203, 188, 168, .77);
+  z-index: 1050;
+  display: none;
+
+}
+
+.nav-opened {
+  overflow: hidden;
+}
+
+.nav-drawer {
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  position: absolute;
+  height: 100%;
+  width: 80%;
+  left: -80%;
+  background: $white;
+  z-index: 1050;
+  padding: 25px 30px;
+  &__header {
+    // padding: 0 30px;
+  }
+
+  &__search-container {
+    // margin-top: 15px;
+    button {
+      display: none;
+    }
+  }
+
+  &__main-nav {
+    // padding: 0 30px;
+  }
+
+  &__bottom-nav {
+    // padding: 0 30px;
+  }
+
+  &__ul {
+    padding: 0;
+    padding-top: 30px;
+  }
+
+  &__li {
+    margin-bottom: 20px;
+
+    a {
+      @include good-reg-16;
+      font-size: 14px !important;
+    }
+
+  }
+
+  &__close-nav {
+    text-align: right;
+    float: right;
+    margin-bottom: 15px;
+  }
+
+  &__nav-ul {
+    padding: 0;
+    margin-top: 15px;
+    li {
+      margin-right: 15px;
+    }
+  }
+}
+
+.announcement-enabled:not(.scrolled) {
+  .nav-drawer-container {
+    top: 5rem;
+    height: 94%;
+
+  }
+}

@@ -1,0 +1,68 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-body;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
+  font-size: 16px;
+  color: $color-body-text;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+}
+
+body,
+input,
+textarea,
+button,
+select {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+}
+
+
+a {
+  color: $color-body-text;
+  text-decoration: none;
+}
+
+a:focus {
+  color: inherit;
+}
+
+a:hover {
+  opacity: .8;
+  color: $color-body-text;
+}
+
+p {
+  @include good-reg-16;
+}
+
+
+ul {
+  list-style: none;
+}
+
+
+
+
+h1 {
+  @include tiempos-reg-68;
+}
+
+h2 {
+  @include tiempos-reg-40;
+
+
+}

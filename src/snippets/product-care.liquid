@@ -1,0 +1,25 @@
+{% if product.metafields.custom_fields["care"] != blank %}
+
+  <section class="product_care">
+    {% for item in product.metafields.custom_fields["care"] %}
+      <div class="">
+
+        {% if item["description"] != blank %}
+          <h4 class="product_care--title">CARE <span class="product_care--plus"></span></h4>
+          <div class="product_care--desc">
+            {{ item["description"] }}
+            {% if item["icons"] != blank %}
+              <div class="product_care--icons d-flex">
+                {% for repeater_item in item["icons"] %}
+                  <img src='{{ repeater_item["icons"] }}' alt="" class="product_care--icon">
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+  </section>
+
+{% endif %}

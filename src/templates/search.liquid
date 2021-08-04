@@ -1,0 +1,97 @@
+<section class="search_page">
+  <div class="container">
+    {% paginate search.results by 10 %}
+      <div class="search_page--heading">
+        <h1 class="search_page--title">
+          {% if search.performed %}
+            <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+              {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+          {% else %}
+            {{ 'general.search.title' | t }}
+          {% endif %}
+        </h1>
+
+        <form action="/search" method="get" role="search" class="search_page--form d-flex">
+          <label for="Search" class="label-hidden">
+            {{ 'general.search.placeholder' | t }}
+          </label>
+          <input type="search"
+                 name="q"
+                 id="Search"
+                 class="search_page--input"
+                 value="{{ search.terms | escape }}"
+                 placeholder="{{ 'general.search.placeholder' | t }}">
+          <button type="submit" class="button search_page--button">
+            {{ 'general.search.submit' | t }}
+          </button>
+        </form>
+      </div>
+
+      <div class="search_page--results">
+        {% if search.performed %}
+          {% if search.results_count == 0 %}
+            <div class="no-results">
+              <p>{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
+
+            </div>
+          {% else %}
+            <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
+            <div class="cols-3">
+              {% for item in search.results %}
+                <div class="col-md">
+                  <a href="{{ item.url | within: collection }}">
+                    {% assign featured_image = item.image | default: item.featured_image %}
+                    {% if featured_image != blank %}
+                      <div class="lazyload search_page--img" data-bgset="{% include 'responsive-bg-image', image: featured_image %}"></div>
+                      <!-- {% include 'responsive-image' with image: featured_image, image_class: "css-class", wrapper_class: "wrapper-css-class", max_width: 700, max_height: 800 %} -->
+                    {% else %}
+                      <div class="search_page--img no-img d-flex justify-content-center align-items-center">
+                        {% include "icon-malek-icon" %}
+                      </div>
+                    {% endif %}
+                    <h3 class="search_page--title">{{ item.title }}</h3>
+                  </a>
+
+                  {% if item.object_type == 'product' %}
+                    <div class="product_content--price">
+                      {% if item.compare_at_price > item.price %}
+                        {% if item.price_varies %}
+                          {%- assign sale_price = item.price | money_without_trailing_zeros -%}
+                          {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+                        {% else %}
+                          {{ 'products.product.on_sale' | t }}
+                          {{ item.price | money_without_trailing_zeros }}
+                        {% endif %}
+                      {% else %}
+                        {% if item.price_varies %}
+                          {%- assign priceMax = item.price_max | money_without_trailing_zeros -%}
+                          {%- assign priceMin = item.price_min | money_without_trailing_zeros -%}
+                          {{ priceMin }} - {{ priceMax }}
+                        {% else %}
+                          {{ item.price | money_without_trailing_zeros }}
+                        {% endif %}
+                      {% endif %}
+                    </div>
+
+                  {% else %}
+                    <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+                  {% endif %}
+
+                </div>
+              {% endfor %}
+            </div>
+
+            {% if paginate.pages > 1 %}
+              {% include 'pagination' %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      </div>
+
+
+
+
+    {% endpaginate %}
+
+  </div>
+</section>

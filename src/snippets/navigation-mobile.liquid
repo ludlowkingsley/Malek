@@ -1,0 +1,99 @@
+<header class="navigation_mobile" role="mobile-header">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex">
+        <div class="burger-container">
+          <button class="burger" type="button" name="button">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <div class="navigation_mobile--logo-container logo-container">
+          <a href="/" class="logo-image">
+            {% include "icon-logo" %}
+          </a>
+        </div>
+      </div>
+
+      <div class="navigation_mobile--cart">
+        <a href="/cart">
+          {{ 'layout.cart.title' | t }}
+          (<span class="cart-count">{{ cart.item_count }}</span>)
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<div class="nav-drawer-container">
+  <div class="nav-drawer d-flex flex-column justify-content-between">
+    <div class="">
+      <header class="nav-drawer__header">
+        <div class="nav-drawer__close-container">
+          <div class="nav-drawer__close-nav">
+            {% include "icon-close" %}
+          </div>
+        </div>
+        <div class="nav-drawer__search-container">
+          <form action="/search" method="get" role="search">
+            <label for="Search-{{ section.id }}" class="label-hidden">
+              {{ 'general.search.placeholder' | t }}
+            </label>
+
+            <input type="search"
+              name="q"
+              id="Search-{{ section.id }}"
+              value="{{ search.terms | escape }}"
+              placeholder="Search">
+
+            <button type="submit" class="button">
+              SEARCH
+            </button>
+          </form>
+        </div>
+      </header>
+      <nav class="nav-drawer__main-nav">
+        <div class="">
+          <ul class="nav-drawer__ul">
+            {% for link in linklists[section.settings.mobile_menu].links %}
+              <li class="nav-drawer__li">
+                <a href="{{ link.url }}">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+
+    <nav class="nav-drawer__bottom-nav">
+      <div class="">
+        <a href="/account">{{ 'layout.customer.account' | t }}</a>
+      </div>
+      <div class="">
+        <ul class="nav-drawer__nav-ul d-flex">
+          {%- assign social_accounts = 'Facebook, Instagram, Twitter, Pinterest, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+
+          {% for social in social_accounts %}
+            {%- assign social_handle = social | handleize -%}
+            {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
+            {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+              {% if settings[social_link] != blank %}
+                <li class="nav-drawer__nav-li">
+                  <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
+                    {% include social_icon %}
+                  </a>
+                </li>
+              {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+
+
+  </div>
+</div>

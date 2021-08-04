@@ -1,0 +1,85 @@
+{% if product.metafields.custom_fields["branded_icon_set"] != blank %}
+  <section class="branded_icon_set">
+    <div class="container">
+      {% for item in product.metafields.custom_fields["branded_icon_set"] %}
+        {% if item["title"] != blank %}
+          <div class="branded_icon_set--heading">
+            <h2 class="branded_icon_set--title">{{ item["title"] }}</h2>
+            {% if item["description"] != blank %}
+              <div class="branded_icon_set--desc">
+                {{ item["description"] }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if item["icon_set"] != blank %}
+          <div class="row branded_icons mobile-hide">
+            {% for icon_set_item in item["icon_set"] %}
+              <div class="branded_icons--item col-md">
+                {% if icon_set_item["icon"] != blank %}
+                  <div class="branded_icons--img-container">
+                    <img src="{{ icon_set_item['icon'] }}" alt="" class="branded_icons--img">
+                  </div>
+                {% endif %}
+                {% if icon_set_item["title"] != blank %}
+                  <h4 class="branded_icons--title">{{ icon_set_item["title"] }}</h4>
+                {% endif %}
+                {% if icon_set_item["description"] != blank %}
+                  <div class="branded_icons--desc">
+                    {{ icon_set_item["description"] }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+
+            <div class="branded_icons--swiper-container swiper-container desktop-hide" >
+              <div class="swiper-wrapper">
+                {% for icon_set_item in item["icon_set"] %}
+                  <div class="swiper-slide">
+                    <div class="branded_icons--item">
+                      {% if icon_set_item["icon"] != blank %}
+                        <div class="branded_icons--img-container">
+                          <img src="{{ icon_set_item['icon'] }}" alt="" class="branded_icons--img">
+                        </div>
+                      {% endif %}
+                      {% if icon_set_item["title"] != blank %}
+                        <h4 class="branded_icons--title">{{ icon_set_item["title"] }}</h4>
+                      {% endif %}
+                      {% if icon_set_item["description"] != blank %}
+                        <div class="branded_icons--desc">
+                          {{ icon_set_item["description"] }}
+                        </div>
+                      {% endif %}
+                    </div>
+
+                  </div>
+                {% endfor %}
+              </div>
+              <!-- If we need pagination -->
+              <div class="swiper-pagination"></div>
+            </div>
+
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <script type="text/javascript">
+  var brandedSwiper = new Swiper('.branded_icons--swiper-container', {
+    direction: 'horizontal',
+    loop: true,
+    spaceBetween: 40,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    }
+  });
+  </script>

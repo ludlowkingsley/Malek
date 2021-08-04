@@ -1,0 +1,83 @@
+<footer class="footer">
+  <div class="container">
+    <div class="d-md-flex justify-content-between">
+      <div class="d-md-flex">
+        <div class="footer--logo-container">
+          <a href="/" class="logo-image">
+            {% include "icon-logo" %}
+          </a>
+        </div>
+
+        <nav class="footer--nav">
+          {%- assign footer_linklist = section.settings.footer_linklist -%}
+          {% if linklists[footer_linklist].links.size > 0 %}
+            <ul class="d-md-flex footer--nav-main-ul">
+              {% for link in linklists[footer_linklist].links %}
+                {% if link.links != blank %}
+                  <li class="footer--nav-main-li">
+                    {{ link.title }}
+                    <ul class="footer--nav-ul">
+                      {% for childlink in link.links %}
+                        <li class="footer--nav-li">
+                          <a href="{{ childlink.url }}">
+                            {{ childlink.title }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% else %}
+                  <li class="footer--nav-li"><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {%- assign social_accounts = 'Facebook, Instagram, Twitter, Pinterest, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+              <li class="footer--nav-main-li">
+                Follow Us
+                <ul class="footer--nav-ul">
+                  {% for social in social_accounts %}
+                    {%- assign social_handle = social | handleize -%}
+                    {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
+                    {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+                      {% if settings[social_link] != blank %}
+                        <li class="footer--nav-li">
+                          <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
+                            {{ social }}
+                          </a>
+                        </li>
+                      {% endif %}
+                  {% endfor %}
+                </ul>
+              </li>
+            </ul>
+          {% endif %}
+        </nav>
+      </div>
+      <div class="footer--legal">
+        <div class="footer--submark">
+          {% include "icon-malek-icon" %}
+        </div>
+        <div class="footer--copyright">
+          <p>©Malekliving</p>
+        </div>
+        <div class="footer--privacy">
+          <a href="/pages/legal">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "First menu",
+        "default": "footer"
+      }
+    ]
+  }
+
+{% endschema %}

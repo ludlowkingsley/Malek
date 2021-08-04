@@ -1,0 +1,75 @@
+.product_care {
+  &--title {
+    @include good-reg-16;
+    cursor: pointer;
+
+    text-transform: uppercase;
+    // padding: 1.8rem 0;
+    margin: 0;
+    margin-bottom: 15px;
+    
+    position: relative;
+    &:hover {
+      // color: $yellow;
+    }
+
+    /* Plus / Minus icon */
+    span {
+      cursor: pointer;
+      position: absolute;
+      margin-left: 7px;
+      top: 47%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+    }
+    span::after,
+    span::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      border-bottom: 1px solid $color-border;
+    }
+    span::before {
+      transition: opacity 0.15s ease-in-out;
+      transform: rotate(90deg);
+      transition: all .2s;
+
+    }
+
+    &.active {
+
+        span::before {
+          transform: rotate(-45deg);
+          transition: all .2s;
+        }
+        span::after{
+          transform: rotate(45deg);
+          transition: all .2s;
+
+        }
+
+    }
+
+
+  }
+
+  &--desc {
+    display: none;
+    margin-bottom: 25px;
+
+  }
+
+  &--desc, &--desc p {
+    @include good-reg-16;
+  }
+
+  &--icon {
+    max-height: 38px;
+    margin-right: 5px;
+  }
+
+
+}

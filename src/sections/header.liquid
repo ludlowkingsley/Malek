@@ -1,0 +1,173 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Header" section in the theme editor.
+
+  Theme Store required settings
+  - Show announcement
+  - Text: message to announce
+  - Link: link of the announcement bar
+
+  Theme Store optional settings
+  - Home page only: only shows on the home page
+{%- endcomment -%}
+<section class="" data-section-id="{{ section.id }}" data-section-type="header">
+  {%- if section.settings.announcement_bar_enabled -%}
+    <div class="announcement_bar">
+        <div class="announcement_bar--text mobile-hide">
+          {%- if section.settings.announcement_bar_link != blank -%}
+            <a href="{{ section.settings.announcement_bar_link }}">
+              {{ section.settings.announcement_bar_text | escape }}
+            </a>
+          {%- else -%}
+            <p>{{ section.settings.announcement_bar_text | escape }}</p>
+          {%- endif -%}
+        </div>
+
+        <a href="" class="ticker desktop-hide">
+          <div class="item-wrap">
+            {%- if section.settings.announcement_bar_link != blank -%}
+              <div class="item">
+                <a href="{{ section.settings.announcement_bar_link }}">
+                  {{ section.settings.announcement_bar_text | escape }}
+                </a>
+              </div>
+            {%- else -%}
+              <div class="item">
+                <p>{{ section.settings.announcement_bar_text | escape }}</p>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.announcement_bar_link != blank -%}
+              <div class="item">
+                <a href="{{ section.settings.announcement_bar_link }}">
+                  {{ section.settings.announcement_bar_text | escape }}
+                </a>
+              </div>
+            {%- else -%}
+              <div class="item">
+                <p>{{ section.settings.announcement_bar_text | escape }}</p>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.announcement_bar_link != blank -%}
+              <div class="item">
+                <a href="{{ section.settings.announcement_bar_link }}">
+                  {{ section.settings.announcement_bar_text | escape }}
+                </a>
+              </div>
+            {%- else -%}
+              <div class="item">
+                <p>{{ section.settings.announcement_bar_text | escape }}</p>
+              </div>
+            {%- endif -%}
+
+
+
+          </div>
+        </a>
+    </div>
+
+    <script type="text/javascript">
+      $('body').addClass('announcement-enabled')
+    </script>
+  {%- endif -%}
+
+  {% include "navigation-desktop" %}
+
+  {% include "navigation-mobile" %}
+
+</section>
+
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_home_page_only",
+        "label": "Show on home page only",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_bar_text",
+        "label": "Announcement text",
+        "default": "Announce something here"
+      },
+      {
+        "type": "url",
+        "id": "announcement_bar_link",
+        "label": "Announcement link",
+        "info": "Optional"
+      },
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "link_list",
+        "id": "mobile_menu",
+        "label": "Mobile Menu"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+  {% endif %}
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_tumblr_link }}",
+    "{{ settings.social_snapchat_link }}",
+    "{{ settings.social_youtube_link }}",
+    "{{ settings.social_vimeo_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}

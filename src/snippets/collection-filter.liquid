@@ -1,0 +1,35 @@
+
+
+
+<div class="filtering">
+	<ul class="filtering--list d-lg-flex" style="">
+		<li class="collection_filter mobile-hide">
+			<a href="/collections/all">SHOP ALL</a>
+		</li>
+		<li class="collection_filter mobile-hide">
+			<a href="/collections/new">NEW</a>
+		</li>
+    {% include "collection-filter-dropdown" with filterCategory: 'type', filterContains: 'type-' %}
+    {% include "collection-filter-dropdown" with filterCategory: 'feel', filterContains: 'feel-' %}
+		<li class="collection_filter mobile-hide">
+			<a href="/collections/sale">SALE</a>
+		</li>
+	</ul>
+</div>
+
+
+<script>
+			// this stores the current tags if they exist
+      {% if current_tags %}
+        var currentTags = {{ current_tags | json }};
+      {% else %}
+        var currentTags = false;
+      {% endif %}
+
+			var collectionHandle = {{ collection | json }};
+
+			console.log(collectionHandle);
+
+
+
+</script>

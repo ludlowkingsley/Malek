@@ -1,0 +1,127 @@
+<section class="image_swiper">
+  <div class="image_swiper--swiper-container swiper-container">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'slide' %}
+            <div class="swiper-slide image_swiper--slide lazyload" data-bgset="{% include 'responsive-bg-image', image: block.settings.img %}">
+              <div class="container image_swiper--container d-flex justify-content-center align-items-center ">
+                <div class="image_swiper--inner-container d-flex justify-content-center align-items-center flex-column">
+                  <div class="image_swiper--icon-malek">
+                    {% include "icon-malek-icon" %}
+                  </div>
+                  {% if block.settings.title != blank %}
+                    <h1 class="image_swiper--title">{{ block.settings.title }}</h1>
+                  {% endif %}
+                  {% if block.settings.desc != blank %}
+                    <div class="image_swiper--desc">
+                      {{ block.settings.desc }}
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.button_link != blank %}
+                    <a href="{{ block.settings.button_link }}">
+                      <button type="button" name="button" class="button-circle">
+                        {{ block.settings.button_label }}
+                      </button>
+                    </a>
+                  {% endif %}
+                  <div class="swiper-button-next">
+                    {% include "icon-arrow-right-white" %}
+                  </div>
+                  <div class="swiper-button-prev">
+                    {% include "icon-arrow-left-white" %}
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+
+
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<script type="text/javascript">
+var imageSwiper = new Swiper('.image_swiper--swiper-container', {
+  direction: 'horizontal',
+  loop: true,
+  observer: true,
+  observeParents: true,
+  autoplay: {
+   delay: 9000,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  }
+});
+</script>
+
+
+
+
+{% schema %}
+  {
+    "name": "Hero Swiper",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Hero Swiper"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Image with text"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo image"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Swiper",
+        "category": "Hero"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,86 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Featured Collection" section in the theme editor.
+
+  Theme Store required settings
+  - Collection
+
+  Theme Store optional settings
+  - Heading: title of the featured collection section
+{%- endcomment -%}
+
+<section class="featured_collection">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2 class="featured_collection--title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+
+
+    {% if section.settings.collection != blank %}
+      {%- assign collection = collections[section.settings.collection] -%}
+      <div class="cols-3 mobile-hide">
+        {% for product in collection.products limit: 3 %}
+          {% include "product-content" with class: '', quickAdd: true %}
+        {% endfor %}
+      </div>
+
+
+      <div class="featured_collection--swiper-container swiper-container desktop-hide">
+        <div class="swiper-wrapper">
+          {% for product in collection.products limit: 3 %}
+
+            {% include "product-content" with class: 'swiper-slide', quickAdd: false %}
+
+          {% endfor %}
+        </div>
+      </div>
+
+
+    {% endif %}
+
+
+  </div>
+
+</section>
+
+
+<script type="text/javascript">
+var imageSwiper = new Swiper('.featured_collection--swiper-container', {
+  direction: 'horizontal',
+  loop: false,
+  observer: true,
+  observeParents: true,
+  spaceBetween: 30,
+
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  }
+});
+</script>
+
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured collection"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

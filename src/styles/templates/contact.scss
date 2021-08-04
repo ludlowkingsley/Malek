@@ -1,0 +1,17 @@
+.contact_ctas {
+  padding: 10rem 0;
+  background: $grey;
+  text-align: center;
+
+  &--title {
+    @include tiempos-reg-40;
+    @include max-width(36);
+    line-height: 47px;
+    margin: 20px auto;
+  }
+
+  &--img {
+    border-radius: 20rem
+  }
+
+}

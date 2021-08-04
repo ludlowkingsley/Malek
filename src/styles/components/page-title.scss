@@ -1,0 +1,33 @@
+.page_title_container {
+
+  max-width: 676px;
+  margin: 0 auto;
+  padding: 8rem 0 5rem;
+  text-align: center;
+  @include mobile-only {
+    padding: 4rem 0 5rem;
+  }
+
+  &--title {
+    @include good-reg-15;
+    text-transform: uppercase;
+  }
+
+  &--icon {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  &--subtitle {
+    @include tiempos-reg-48;
+    margin-bottom: 15px;
+    margin-top: 5px;
+
+  }
+
+  &--desc {
+    @include good-reg-20;
+
+
+  }
+}

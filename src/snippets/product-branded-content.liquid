@@ -1,0 +1,39 @@
+{% if product.metafields.custom_fields["branded_content"] != blank %}
+  <section class="branded_content">
+    {% for item in product.metafields.custom_fields["branded_content"] %}
+    <div class="row">
+      {% if item["full_image"] != blank %}
+        <div class="lazyload col-md-5 branded_content--img" style="background-image: url({{ item['full_image'] }})">
+
+          {% if item["stacked_image"] != blank %}
+             <div class="branded_content--stacked-img" style="background-image: url({{ item['stacked_image'] }})">
+
+             </div>
+           {% endif %}
+
+
+        </div>
+      {% endif %}
+      <div class="col-md-7 branded_content--txt-container">
+        <div class="branded_content--inner-container">
+          {% if item["title"] != blank %}
+            <h3 class="branded_content--title">{{ item["title"] }}  </h3>
+          {% endif %}
+          {% if item["description"] != blank %}
+            <div class="branded_content--desc">
+              {{ item["description"] }}
+            </div>
+          {% endif %}
+          {% if item["button"] != blank %}
+            <div class="branded_content--btn-container">
+              <a href="{{ item['button'] }}">
+                <button type="button" name="button" class="button-circle">LEARN MORE</button>
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+{% endif %}

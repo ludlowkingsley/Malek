@@ -1,0 +1,71 @@
+.more {
+  background: $grey;
+  padding: 5rem 0;
+
+
+  aside {
+    padding-left: 18rem;
+
+    @media (max-width: 1400px) {
+      padding-left: 11rem;
+
+    }
+
+    @media (max-width: 1300px) {
+      padding-left: 9rem;
+
+    }
+
+    @media (max-width: 1000px) {
+      padding-left: 2rem;
+
+    }
+
+    @include mobile-only {
+
+      padding: 0;
+    }
+
+    transition: padding-left .2s;
+  }
+
+  &--arrows {
+    @include mobile-only {
+
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &--title {
+    @include tiempos-reg-40;
+    max-width: 11rem;
+    line-height: 4rem;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 1000px) {
+      font-size: 3rem;
+      line-height: 30px;
+    }
+
+    @include mobile-only {
+      max-width: 100%;
+      text-align: center;
+    }
+
+  }
+
+  &--img {
+    border-radius: 20rem;
+    margin-bottom: 10px;
+  }
+
+  &--caption {
+    text-align: center;
+    @include good-reg-16;
+  }
+
+  &--previous-button {
+    margin-right: 15px;
+  }
+}

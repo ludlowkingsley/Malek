@@ -1,0 +1,167 @@
+.our_materials_links {
+  background: $lightBrown;
+  padding: 1.5rem 0;
+
+  &--ul {
+    margin: 0;
+    padding: 0;
+    @include mobile-only {
+      text-align: center;
+    }
+  }
+
+  &--li {
+    margin: 0 25px;
+    @include mobile-only {
+      margin: 15px 0;
+    }
+    a {
+      color: $white;
+      opacity: .5;
+      @include good-reg-14;
+      text-transform: uppercase;
+      transition: all .2s;
+
+      &:hover {
+        opacity: 1;
+        transition: all .2s;
+      }
+    }
+  }
+}
+
+
+.our_materials {
+
+  .row.even {
+    @include mobile-only {
+      flex-direction: column-reverse;
+    }
+  }
+
+
+  &--material {
+    padding: 7.5rem 0;
+
+    &:nth-child(2n) {
+      background: $grey;
+    }
+
+  }
+
+  &--img-container {
+    @include mobile-only {
+      margin-bottom: 5rem;
+
+    }
+  }
+
+  &--innertxt-container {
+    max-width: 50rem;
+  }
+
+  &--txt-container {
+    &.even {
+      @include tablet-up {
+        padding-left: 0;
+        padding-right: 0rem;
+      }
+
+    }
+
+    &.odd {
+      @include tablet-up {
+        padding-right: 0;
+        padding-left: 0rem;
+      }
+
+    }
+  }
+
+  &--title {
+    @include good-reg-15;
+    @include letter-spacing(50);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  &--subtitle {
+    @include tiempos-reg-48;
+    line-height: 55px;
+    margin-bottom: 10px;
+
+    @include mobile-only {
+      line-height: 41px;
+    }
+
+  }
+
+  &--fibers {
+    overflow: scroll;
+    svg {
+      max-width: 100%;
+      @include mobile-only {
+            max-width: 71rem;
+                height: 31rem;
+      }
+
+    }
+  }
+
+  &--threads {
+    svg {
+      @include tablet-up {
+
+        max-width: 70%;
+      }
+    }
+    @include mobile-only {
+      text-align: center;
+      margin: 2rem 0;
+    }
+  }
+
+  &--desc {
+    @include good-reg-20;
+    margin-bottom: 4rem;
+    @include max-width(60);
+  }
+
+  &--img {
+    border-radius: 20rem;
+  }
+
+  &--secondary-section {
+  }
+
+  &--secondary-section-heading {
+    padding: 5rem 0;
+    text-align: center;
+
+  }
+
+  &--title-2 {
+    @include tiempos-reg-40;
+    @include mobile-only {
+      line-height: 34px;
+      font-size: 2.8rem;
+    }
+  }
+
+  .our_materials--third-section {
+    .our_materials--desc {
+      max-width: 40rem;
+    }
+  }
+
+
+
+}
+
+.btm-bg-img {
+    padding-bottom: 50%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}

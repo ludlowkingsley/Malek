@@ -1,0 +1,84 @@
+/* --------------------------------------------------------------------------
+Grid Styles
+-----------------------------------------------------------------------------*/
+[class^="cols"] {
+	display: grid;
+	grid-template-rows: auto;
+	grid-column-gap: $gridColumnGutterSize;
+	grid-row-gap: $gridRowGutterSize;
+	grid-template-columns: 1fr;
+}
+
+/* 👉🏻  These classes go on the PARENT container, not the children. */
+.cols-2 {
+	@include tablet-up {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	&.no-break {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+}
+.cols-3 {
+
+
+	@include tablet-up {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	&.no-break {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.cols-4 {
+	@include tablet-up {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@include desktop-only {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.cols-1-2 {
+	@include tablet-up {
+		grid-template-columns: 1fr 2fr;
+	}
+}
+
+.cols-2-1 {
+	@include tablet-up {
+		grid-template-columns: 2fr 1fr;
+	}
+
+}
+
+/* ⭐  Styles for IE & OLDER BROWSERS that don't support CSS Grid using Modernizr's .no-cssgrid class  */
+.no-cssgrid {
+	[class^="cols"] {
+		@extend .clearfix;
+		> * {
+			margin-bottom: $gridRowGutterSize;
+		}
+	}
+
+	/* Use floats for older browsers to turn elements into columns for screens larger than the tablet-up breakpoint in variables.scss */
+	@include tablet-up {
+		[class^="cols"] {
+			margin-left: (-$gridColumnGutterSize);
+			> * {
+				float: left;
+				margin-left: $gridColumnGutterSize;
+			}
+		}
+
+		.cols-2 > * { width: calc(50% - #{$gridColumnGutterSize}); }
+		.cols-3 > * { width: calc(33.3% - #{$gridColumnGutterSize}); }
+		.cols-4 > * { width: calc(25% - #{$gridColumnGutterSize}); }
+		.cols-1-2 > :first-of-type { width: calc(66.66% - #{$gridColumnGutterSize}); }
+		.cols-1-2 > :last-of-type { width: calc(33.33% - #{$gridColumnGutterSize}); }
+		.cols-2-1 > :first-of-type { width: calc(33.33% - #{$gridColumnGutterSize}); }
+		.cols-2-1 > :last-of-type { width: calc(66.66% - #{$gridColumnGutterSize}); }
+	}
+}

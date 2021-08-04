@@ -1,0 +1,69 @@
+.accordion {
+  border-bottom: 1px solid #8E7965;
+  &--title {
+    @include good-reg-16;
+    cursor: pointer;
+
+    text-transform: uppercase;
+    padding: 1.8rem 0;
+    margin: 0;
+    position: relative;
+    &:hover {
+      // color: $yellow;
+    }
+
+    .rela {
+      position: relative;
+    }
+
+    /* Plus / Minus icon */
+    span {
+      cursor: pointer;
+      position: absolute;
+      right: 14px;
+      top: 47%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+    }
+    span::after,
+    span::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      border-bottom: 1px solid $color-border;
+    }
+    span::before {
+      transition: opacity 0.15s ease-in-out;
+      transform: rotate(90deg);
+      transition: all .2s;
+
+    }
+
+    &.active {
+      font-weight: bold;
+
+      span::before {
+        transform: rotate(-45deg);
+        transition: all .2s;
+      }
+      span::after{
+        transform: rotate(45deg);
+        transition: all .2s;
+
+      }
+    }
+
+
+
+  }
+
+  &--desc {
+    display: none;
+    margin-bottom: 40px;
+    max-width: 850px;
+  }
+
+}

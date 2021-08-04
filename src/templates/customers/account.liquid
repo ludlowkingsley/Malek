@@ -1,0 +1,60 @@
+<section class="order_history">
+  <div class="container">
+    <div class="max-container">
+      <h1 class="order_history--title">{{ 'customer.orders.title' | t }}</h1>
+      <div class="orders">
+        {% if customer.orders.size != 0 %}
+          {% for order in customer.orders %}
+            <div class="order_item d-flex justify-content-between">
+              <div class="">
+                <h3 class="order_item--title" data-label="{{ 'customer.orders.date' | t }}">Placed {{ order.created_at | date: format: 'month_day_year' }}</h3>
+                <div class="order_item--line-items">
+                  {% for line_item in order.line_items %}
+                    <p class="order_item--line-title">{{ line_item.title | link_to: line_item.product.url }}</p>
+                  {% endfor %}
+                </div>
+                <div class="order_item--total">
+                  <p data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money_without_trailing_zeros }}</p>
+                </div>
+              </div>
+              <div class="">
+                <div class="order_item--status">
+                  <p>{{ order.financial_status_label }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="account_addresses">
+  <div class="container">
+    <div class="max-container">
+      <h2 class="account_addresses--title">{{ 'customer.account.details' | t }}</h2>
+      <div class="d-flex justify-content-between">
+        <div class="account_addresses--address">
+          {{ customer.default_address | format_address }}
+        </div>
+        <div class="account_addresses--edit">
+          <a href="/account/addresses">Edit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom: 5rem;">
+  <div class="container">
+    <div class="max-container">
+      <a href="/account/logout">
+        <button type="button" name="button" class="button-circle">Logout</button>
+      </a>
+    </div>
+  </div>
+</section>

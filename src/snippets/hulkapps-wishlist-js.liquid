@@ -1,0 +1,10 @@
+<script type="text/javascript">
+  if(typeof window.hulkappsWishlist === 'undefined') {
+    window.hulkappsWishlist = {};
+  }
+  window.hulkappsWishlist.baseURL = '/apps/advanced-wishlist/api';
+  window.hulkappsWishlist.customerID = {{ customer.id | json }};
+  window.hulkappsWishlist.domain = {{ shop.permanent_domain | json }};
+  window.hulkappsWishlist.productJSON = {{ product | json }};
+  window.hulkappsWishlist.selectedVariant = {{ product.selected_or_first_available_variant.id | json }};
+</script>

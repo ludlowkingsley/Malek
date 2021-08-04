@@ -1,0 +1,56 @@
+{% if product.metafields.custom_fields["informational_product_render"] != blank %}
+  <section class="product_render">
+    <div class="container">
+      {% for item in product.metafields.custom_fields["informational_product_render"] %}
+        {% if item["title"] != blank %}
+          <div class="product_render--heading">
+            <h2 class="product_render--title">{{ item["title"] }}</h2>
+            {% if item["description"] != blank %}
+              <div class="product_render--desc">
+                {{ item["description"] }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if item["render"] != blank %}
+          <div class="product_render--render">
+            <img src="{{ item['render'] }}" alt="{{ product.title }} Render" >
+          </div>
+        {% endif %}
+
+        {% if item["info_list"] != blank %}
+          <div class="row info_list">
+            {% for info_list_item in item["info_list"] %}
+              <div class="col-md">
+                {% if info_list_item["title"] != blank %}
+                  <h4 class="info_list--title">{{ info_list_item["title"] }}</h4>
+                {% endif %}
+                {% if info_list_item["description"] != blank %}
+                  <div class="info_list--desc">
+                    {{ info_list_item["description"] }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if item["button"] != blank %}
+          <div class="product_render--btn-container">
+            <a href="{{ item['button'] }}">
+              <button type="button" name="button" class="button-circle">LEARN MORE</button>
+            </a>
+          </div>
+        {% endif %}
+
+
+      {% endfor %}
+
+
+
+    </div>
+  </section>
+
+
+
+{% endif %}

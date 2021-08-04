@@ -1,0 +1,187 @@
+<section class="our_materials_links">
+  <div class="">
+    <ul class="our_materials_links--ul d-md-flex text-md-center justify-content-center align-items-center">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'material' %}
+            <li class="our_materials_links--li">
+              {% assign anchor = block.settings.title | downcase %}
+              {% assign anchor = anchor | replace: ' ', '-' %}
+              {% assign anchor = anchor | replace: '&', 'and' %}
+              <a href="#{{ anchor }}">{{ block.settings.title }}</a>
+            </li>
+        {% endcase %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+
+<section class="our_materials">
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'material' %}
+          {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+          {% assign anchor = block.settings.title | downcase %}
+          {% assign anchor = anchor | replace: ' ', '-' %}
+          {% assign anchor = anchor | replace: '&', 'and' %}
+          <div id="{{ anchor }}" class="our_materials--material">
+            <div class="container">
+              <div class="row {{ thecycle }}">
+                {% if thecycle == 'odd' %}
+                  {% if block.settings.img != blank %}
+                    <div class="our_materials--img-container col-md">
+                      {% include 'responsive-image' with image: block.settings.img, image_class: "our_materials--img", wrapper_class: "our_materials--img-wrapper", max_width: 500, max_height: 800 %}
+                    </div>
+                  {% endif %}
+                {% endif %}
+
+
+                <div class="our_materials--txt-container col-md d-flex  align-items-center {{ thecycle }}">
+                  <div class="our_materials--innertxt-container">
+                    {% if block.settings.title != blank %}
+                      <h4 class="our_materials--title">{{ block.settings.title }}</h4>
+                    {% endif %}
+                    {% if block.settings.subtitle != blank %}
+                      <h2 class="our_materials--subtitle">{{ block.settings.subtitle }}</h2>
+                    {% endif %}
+                    {% if block.settings.desc != blank %}
+                      <div class="our_materials--desc">{{ block.settings.desc }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+
+
+                {% if thecycle == 'even' %}
+                  {% if block.settings.img != blank %}
+                    <div class="our_materials--img-container col-md">
+                      {% include 'responsive-image' with image: block.settings.img, image_class: "our_materials--img", wrapper_class: "our_materials--img-wrapper", max_width: 700, max_height: 800 %}
+                    </div>
+                  {% endif %}
+                {% endif %}
+
+
+                {% if block.settings.enable_second_section %}
+                  <div class="our_materials--secondary-section">
+                    <div class="our_materials--secondary-section-heading">
+                      {% if block.settings.title_2 != blank %}
+                        <h2 class="our_materials--title-2">{{ block.settings.title_2 }}</h2>
+                      {% endif %}
+                      {% if block.settings.desc_2 != blank %}
+                        <div class="our_materials--desc">{{ block.settings.desc_2 }}</div>
+                      {% endif %}
+                      {% if block.settings.enable_fiber_illustration %}
+                        <div class="our_materials--fibers">
+                          {% include "illustration-fibers" %}
+                        </div>
+                      {% endif %}
+                    </div>
+                    <div class="our_materials--third-section row">
+                      {% if block.settings.desc_2 != blank %}
+                        <div class="our_materials--desc col-md">
+                          {{ block.settings.desc_3 }}
+                          <div class="our_materials--key">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="161.005" height="13.944" viewBox="0 0 161.005 13.944">
+                              <g id="Group_877" data-name="Group 877" transform="translate(-130 -2454.198)">
+                                <g id="Group_770" data-name="Group 770" transform="translate(-195.752 -77.709)">
+                                  <path id="Path_466" data-name="Path 466" d="M6.342.224a4.914,4.914,0,0,0,5-4.088H9.814a3.461,3.461,0,0,1-3.584,2.7C3.892-1.162,2.3-2.912,2.3-5.586a3.842,3.842,0,0,1,3.99-4.172,3.333,3.333,0,0,1,3.4,2.506h1.526a4.682,4.682,0,0,0-4.9-3.892A5.347,5.347,0,0,0,.756-5.516,5.414,5.414,0,0,0,6.342.224Zm10.206,0a3.649,3.649,0,0,0,3.71-3.878,3.633,3.633,0,0,0-3.71-3.85,3.63,3.63,0,0,0-3.7,3.85A3.646,3.646,0,0,0,16.548.224Zm0-1.218a2.387,2.387,0,0,1-2.254-2.66,2.369,2.369,0,0,1,2.254-2.632,2.371,2.371,0,0,1,2.268,2.632A2.388,2.388,0,0,1,16.548-.994ZM21.91,0h1.428V-3.6c0-1.554.854-2.688,2.142-2.688,1.064,0,1.652.77,1.652,1.988V0h1.442V-4.34c0-2.086-.91-3.164-2.674-3.164a2.832,2.832,0,0,0-2.562,1.47V-7.28H21.91Zm8.61,0h1.428V-3.6c0-1.554.854-2.688,2.142-2.688,1.064,0,1.652.77,1.652,1.988V0h1.442V-4.34c0-2.086-.91-3.164-2.674-3.164a2.832,2.832,0,0,0-2.562,1.47V-7.28H30.52ZM42.448.224A3.058,3.058,0,0,0,45.64-2.114H44.226A1.736,1.736,0,0,1,42.448-.952c-1.344,0-2.03-.91-2.128-2.24h5.4v-.56c0-2.422-1.5-3.752-3.276-3.752a3.547,3.547,0,0,0-3.6,3.85A3.563,3.563,0,0,0,42.448.224ZM40.32-4.256a2.051,2.051,0,0,1,2.086-2.03,1.935,1.935,0,0,1,1.89,2.03ZM50.848.224a3.116,3.116,0,0,0,3.22-2.618H52.64a1.741,1.741,0,0,1-1.834,1.4c-1.288,0-2.114-1.092-2.114-2.66s.826-2.632,2.114-2.632A1.77,1.77,0,0,1,52.64-4.858h1.428A3.147,3.147,0,0,0,50.848-7.5a3.547,3.547,0,0,0-3.6,3.85A3.563,3.563,0,0,0,50.848.224Zm8.89-.238V-1.26c-1.666.126-1.722-.028-1.722-1.232V-6.02H60.1V-7.28H58.016V-9.24H56.588v1.96H55.034v1.26h1.554v4.06C56.546.1,57.652.182,59.738-.014Zm2.7-8.372a1,1,0,0,0,1.008-1.008A1,1,0,0,0,62.44-10.4a1.007,1.007,0,0,0-1.022,1.008A1,1,0,0,0,62.44-8.386ZM61.74,0h1.414V-7.28H61.74Zm6.888.224a3.649,3.649,0,0,0,3.71-3.878,3.633,3.633,0,0,0-3.71-3.85,3.63,3.63,0,0,0-3.7,3.85A3.646,3.646,0,0,0,68.628.224Zm0-1.218a2.387,2.387,0,0,1-2.254-2.66,2.369,2.369,0,0,1,2.254-2.632A2.371,2.371,0,0,1,70.9-3.654,2.388,2.388,0,0,1,68.628-.994ZM73.99,0h1.428V-3.6c0-1.554.854-2.688,2.142-2.688,1.064,0,1.652.77,1.652,1.988V0h1.442V-4.34c0-2.086-.91-3.164-2.674-3.164a2.832,2.832,0,0,0-2.562,1.47V-7.28H73.99ZM86.8,2.8h1.428V-1.134A2.718,2.718,0,0,0,90.636.224c1.9,0,3.248-1.6,3.248-3.836,0-2.282-1.344-3.892-3.248-3.892a2.663,2.663,0,0,0-2.408,1.358V-7.28H86.8ZM90.328-.994c-1.26,0-2.156-1.092-2.156-2.632s.9-2.66,2.156-2.66S92.47-5.18,92.47-3.626,91.588-.994,90.328-.994ZM99.106.224a3.649,3.649,0,0,0,3.71-3.878,3.633,3.633,0,0,0-3.71-3.85,3.63,3.63,0,0,0-3.7,3.85A3.646,3.646,0,0,0,99.106.224Zm0-1.218a2.387,2.387,0,0,1-2.254-2.66,2.369,2.369,0,0,1,2.254-2.632,2.371,2.371,0,0,1,2.268,2.632A2.388,2.388,0,0,1,99.106-.994Zm6.1-7.392a1,1,0,0,0,1.008-1.008A1,1,0,0,0,105.21-10.4a1.007,1.007,0,0,0-1.022,1.008A1,1,0,0,0,105.21-8.386ZM104.51,0h1.414V-7.28H104.51Zm3.472,0h1.428V-3.6c0-1.554.854-2.688,2.142-2.688,1.064,0,1.652.77,1.652,1.988V0h1.442V-4.34c0-2.086-.91-3.164-2.674-3.164a2.832,2.832,0,0,0-2.562,1.47V-7.28h-1.428ZM120.6-.014V-1.26c-1.666.126-1.722-.028-1.722-1.232V-6.02h2.086V-7.28h-2.086V-9.24h-1.428v1.96h-1.554v1.26h1.554v4.06C117.4.1,118.51.182,120.6-.014Zm4.788.238c1.932,0,3.122-.882,3.122-2.226,0-3.108-4.76-1.5-4.76-3.276,0-.658.588-1.148,1.582-1.148,1.092,0,1.764.546,1.806,1.456h1.358A2.735,2.735,0,0,0,125.454-7.5c-1.932,0-3.122.938-3.122,2.282,0,3.024,4.746,1.386,4.746,3.234,0,.644-.6,1.134-1.638,1.134-1.162,0-1.9-.518-1.96-1.414h-1.358C122.164-.728,123.41.224,125.384.224Z" transform="translate(358.251 2543.051)" fill="#191b1c"/>
+                                  <path id="Path_465" data-name="Path 465" d="M2.866,0A2.866,2.866,0,0,1,5.731,2.866V20.059a2.866,2.866,0,0,1-5.731,0V2.866A2.866,2.866,0,0,1,2.866,0Z" transform="translate(348.677 2535.051) rotate(90)" fill="#191b1c"/>
+                                </g>
+                              </g>
+                            </svg>
+                        </div>
+
+
+                        </div>
+                      {% endif %}
+                      {% if block.settings.enable_fiber_illustration %}
+                        <div class="col-md">
+                          <div class="our_materials--threads d-flex justify-content-center">
+                            {% include "illustration-threads" %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
+
+</section>
+
+{% if section.settings.img != blank %}
+  <div class="lazyload btm-bg-img" data-bgset="{% include 'responsive-bg-image', image: section.settings.img %}"></div>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Our Materials Content",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Bottom Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "material",
+        "name": "Material",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_second_section",
+            "label": "Show section with additional text + illustration",
+            "default": false
+          },
+          {
+            "type": "text",
+            "id": "title_2",
+            "label": "Secondary Section Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc_2",
+            "label": "Secondary Section Description"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_fiber_illustration",
+            "label": "Show Fiber illustration",
+            "default": false
+          },
+          {
+            "type": "richtext",
+            "id": "desc_3",
+            "label": "Secondary Section Description 2"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

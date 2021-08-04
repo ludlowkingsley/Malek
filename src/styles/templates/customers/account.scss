@@ -1,0 +1,100 @@
+.account {
+  padding: 10rem 0;
+  &--inner-container {
+    @include max-width(40);
+  }
+
+  &--title {
+    @include tiempos-reg-40;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  &--input-container {
+    margin-bottom: 15px;
+  }
+
+  &--btn-container {
+    text-align: center;
+    margin-top: 3rem;
+    button {
+      margin-bottom: 15px;
+    }
+  }
+
+  &--link-container {
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+.order_history {
+  padding: 5rem 0 5rem;
+  &--title {
+    @include tiempos-reg-40;
+    border-bottom: 1px solid $color-border;
+    margin-bottom: 2rem;
+
+  }
+}
+
+.order_item {
+  &--title {
+    @include tiempos-reg-27;
+    color: $brown;
+    margin-bottom: 10px;
+  }
+
+  &--line-title, &--line-title p {
+    @include good-reg-16;
+    color: $brown;
+  }
+
+  &--total, &--total p {
+    @include good-reg-16;
+    color: $lightBrown;
+    margin-top: 15px;
+  }
+
+  &--status {
+    @include good-reg-16;
+    color: $lightBrown;
+  }
+}
+
+.account_addresses {
+  padding: 0 0 5rem;
+
+  &--title {
+    @include tiempos-reg-40;
+    border-bottom: 1px solid $color-border;
+    margin-bottom: 2rem;
+  }
+
+  &--address {
+    p::first-line {
+      @include tiempos-reg-27;
+      color: $brown;
+      margin-bottom: 10px;
+    }
+
+    p {
+      @include good-reg-16;
+      color: $lightBrown;
+    }
+  }
+
+  &--edit {
+    a {
+      @include good-reg-16;
+      color: $lightBrown;
+    }
+  }
+}
+
+#account {
+  .max-container {
+    @include max-width(90);
+  }
+}

@@ -1,0 +1,164 @@
+<section class="cart">
+  <div class="container">
+
+
+
+    {% if cart.item_count > 0 %}
+      <form action="/cart" method="post" novalidate>
+        <div class="cols-2 cart--inner-container ">
+          <div class="cart_items col-md">
+            <div class="cart--heading">
+              <h1 class="cart--title">{{ 'cart.general.title' | t }}</h1>
+              <h4 class="cart--count">{{ cart.item_count }} ITEMS</h4>
+            </div>
+            {% for item in cart.items %}
+              <div class="cart_items--item d-flex">
+                <div class="cart_items--img-container ">
+                  {% if item.image != blank %}
+                    <a href="{{ item.url | within: collections.all }}">
+                      {{ item | img_url: '240x240' | img_tag: item.title }}
+                    </a>
+                  {% endif %}
+                </div>
+
+                <div class="cart_items--item-info d-flex flex-column justify-content-between">
+
+                  <div class="cart_items--item-heading">
+                    <div class="d-flex justify-content-between">
+                      <h4 class="cart_items--title">{{ item.product.title }}</h4>
+                      <div class="">
+                        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                          {%- include 'icon-close' -%}
+                        </a>
+                      </div>
+                    </div>
+
+                    {% if item.options_with_values.size > 0 %}
+                      <div class="cart_items--options">
+                        {% for value in item.options_with_values %}
+                          <div class="d-flex">
+                            <label class="cart_items--option-label">{{ value.name }}</label>
+                            <div class="cart_items--option-value">
+                              {{ value.value }}
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+
+
+
+                  <div class="cart_items--btm d-flex justify-content-between align-items-end">
+                    <div class="cart_items--qty-selector">
+                      <select name="updates[]" id="updates_{{ item.key }}" class="qty-select" data-key="{{ item.key }}" aria-label="{{ 'cart.general.item_quantity' | t }}">
+                        <option value="0" {% if item.quantity == 0 %} selected="selected" {% endif %}>0</option>
+                        <option value="1" {% if item.quantity == 1 %} selected="selected" {% endif %}>1</option>
+                        <option value="2" {% if item.quantity == 2 %} selected="selected" {% endif %}>2</option>
+                        <option value="3" {% if item.quantity == 3 %} selected="selected" {% endif %}>3</option>
+                        <option value="4" {% if item.quantity == 4 %} selected="selected" {% endif %}>4</option>
+                        <option value="5" {% if item.quantity == 5 %} selected="selected" {% endif %}>5</option>
+                        <option value="6" {% if item.quantity == 6 %} selected="selected" {% endif %}>6</option>
+                        <option value="7" {% if item.quantity == 7 %} selected="selected" {% endif %}>7</option>
+                        <option value="8" {% if item.quantity == 8 %} selected="selected" {% endif %}>8</option>
+                        <option value="9" {% if item.quantity == 9 %} selected="selected" {% endif %}>9</option>
+                        <option value="10" {% if item.quantity == 10 %} selected="selected" {% endif %}>10</option>
+                      </select>
+                    </div>
+                    <div class="cart_items--price">
+                      {% if item.original_line_price != item.line_price %}
+                        <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                        {{ item.price | money_without_trailing_zeros }}
+                        <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                        <s>{{ item.original_price | money_without_trailing_zeros }}</s>
+                      {% else %}
+                        {{ item.price | money_without_trailing_zeros }}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="col-md cart_summary">
+            <div class="cart_summary--container">
+              <h2 class="cart_summary--title">Summary</h2>
+              <div class="cart_summary--receipt">
+                <div class="cart_summary--inner-container">
+                  <div class="cart_summary--item d-flex justify-content-between bordered">
+                    <label class="cart_summary--label">{{ 'cart.general.subtotal' | t }}</label>
+                    <p class="cart_summary--value">{{ cart.total_price | money_without_trailing_zeros }}</p>
+                  </div>
+                  <div class="cart_summary--item d-flex justify-content-between">
+                    <label class="cart_summary--label">{{ 'cart.general.subtotal' | t }}</label>
+                    <p class="cart_summary--value">{{ 'cart.general.shipping_at_checkout' | t }}</p>
+                  </div>
+                </div>
+
+                <input class="hide" type="submit" name="update" value="{{ 'cart.general.update' | t }}">
+                <button type="submit" name="checkout" class="button-brown">
+                  {{ 'cart.general.checkout' | t }}
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        {% if settings.cart_notes_enable %}
+          <div class="hide">
+            <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+          </div>
+
+        {% endif %}
+
+
+      </form>
+    {% else %}
+      <div class="empty-cart">
+        <div class="cart--heading">'
+          <h1 class="cart--title">{{ 'cart.general.title' | t }}</h1>
+        </div>
+        {% comment %}
+        Cart empty state
+        {% endcomment %}
+        <div class="supports-cookies">
+          <p>{{ 'cart.general.empty' | t }}</p>
+          <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+        </div>
+
+        {% comment %}
+        Cart no cookies state
+        ---------------------
+        Browser cookies are required to use the cart. If cookies aren't enabled in the
+        browser a message is displayed prompting the user to enable them.
+        {% endcomment %}
+        <div class="supports-no-cookies">
+          <p>{{ 'cart.general.cookies_required' | t }}</p>
+        </div>
+      </div>
+    {% endif %}
+
+
+  </div>
+</section>
+
+<script type="text/javascript">
+  $(function() {
+    $('select').selectric();
+  });
+  $('select').on('selectric-change', function(event, element, selectric) {
+    var qty = this.value;
+    var key = $(this).attr('data-key');
+    console.log(key);
+
+    // jQuery.post('/cart/update.js', {
+    //   updates: {
+    //     794864053: 2,
+    //     794864233: 3
+    //   }
+    // });
+  });
+</script>

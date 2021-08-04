@@ -1,0 +1,81 @@
+<section>
+  <a href="" class="ticker">
+    <div class="item-wrap">
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'txt' %}
+            <div class="item"><p>{{ block.settings.title }}</p></div>
+
+        {% endcase %}
+      {% endfor %}
+  
+    </div>
+  </a>
+  </div>
+</section>
+
+
+<!-- <script type="text/javascript">
+if ($('.ticker').length > 0) {
+  $('.ticker').grouploop({
+    // animation speed
+    velocity: 1,
+
+    // false = from left to right
+    forward: false,
+
+    // default selectors
+    childNode: '.item',
+    childWrapper: '.item-wrap',
+
+    // enable pause on hover
+    pauseOnHover: true,
+
+    // stick the first item
+    stickFirstItem: false,
+
+    // callback
+    complete: null
+  });
+}
+</script> -->
+
+
+
+{% schema %}
+  {
+    "name": "Text Ticker",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Text Ticker"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#CBBCA8"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "txt",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text Ticker",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}

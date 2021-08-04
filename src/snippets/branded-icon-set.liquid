@@ -1,0 +1,62 @@
+{% if product.metafields.custom_fields["branded_icon_set"] != blank %}
+  <div class="custom-field custom-field__branded-icon-set custom-field__type--field-collection-json">
+    <h3 class="custom-field--title">Branded Icon Set</h3>
+    <div class="custom-field--value">
+      {% for item in product.metafields.custom_fields["branded_icon_set"] %}
+        <div class="fc-item fc-index--{{ forloop.index0 }}">
+           {% if item["title"] != blank %}
+             <div class="fc-field field__title field-type--text">
+               <h4 class="custom-field--title">Title</h4>
+               <div class="custom-field--value">
+                 {{ item["title"] }}
+               </div>
+             </div>
+           {% endif %}
+           {% if item["description"] != blank %}
+             <div class="fc-field field__description field-type--html">
+               <h4 class="custom-field--title">Description</h4>
+               <div class="custom-field--value">
+                 {{ item["description"] }}
+               </div>
+             </div>
+           {% endif %}
+           {% if item["icon_set"] != blank %}
+             <div class="fc-field field__icon-set field-type--field-collection-json">
+               <h4 class="custom-field--title">Icon Set</h4>
+               <div class="custom-field--value">
+                 {% for icon_set_item in item["icon_set"] %}
+                   <div class="child-fc-item">
+                     {% if icon_set_item["title"] != blank %}
+                       <div class="fc-field field__title field-type--text">
+                         <h4 class="custom-field--title">Title</h4>
+                         <div class="custom-field--value">
+                           {{ icon_set_item["title"] }}
+                         </div>
+                       </div>
+                     {% endif %}
+                     {% if icon_set_item["description"] != blank %}
+                       <div class="fc-field field__description field-type--html">
+                         <h4 class="custom-field--title">Description</h4>
+                         <div class="custom-field--value">
+                           {{ icon_set_item["description"] }}
+                         </div>
+                       </div>
+                     {% endif %}
+                     {% if icon_set_item["icon"] != blank %}
+                       <div class="fc-field field__icon field-type--image">
+                         <h4 class="custom-field--title">Icon</h4>
+                         <div class="custom-field--value">
+                           {{ icon_set_item["icon"] }}
+                         </div>
+                       </div>
+                     {% endif %}
+                   </div>
+                 {% endfor %}
+               </div>
+             </div>
+           {% endif %}
+         </div>
+       {% endfor %}
+    </div>
+  </div>
+{% endif %}

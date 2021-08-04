@@ -1,0 +1,113 @@
+<section class="our_history">
+  <div class="our_history--swiper-container swiper-container">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'slide' %}
+            <div class="swiper-slide our_history--slide" data-year="{{ block.settings.title }}">
+              <div class="row">
+                {% if block.settings.img != blank %}
+                  <div class="col-md lazyload our_history--img-container" data-bgset="{% include 'responsive-bg-image', image: block.settings.img %}"></div>
+                {% endif %}
+                <div class="col-md our_history--txt-container d-flex flex-column justify-content-center align-items-center">
+                  {% if section.settings.title != blank %}
+                    <h2 class="our_history--title">{{ section.settings.title }}</h2>
+                  {% endif %}
+                  {% if block.settings.title != blank %}
+                    <h3 class="our_history--year">{{ block.settings.title }}</h3>
+                  {% endif %}
+                  {% if block.settings.desc %}
+                    <div class="our_history--desc">
+                      {{ block.settings.desc }}
+                    </div>
+                  {% endif %}
+
+                  <div class="swiper-button-next">
+                    {% include "icon-arrow-right" %}
+                  </div>
+                  <div class="swiper-button-prev">
+                    {% include "icon-arrow-left" %}
+                  </div>
+                  <!-- If we need pagination -->
+                  <div class="pagination pagination-{{ forloop.index0 }} "></div>
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+<script type="text/javascript">
+var historySwiper = new Swiper('.our_history--swiper-container', {
+  direction: 'horizontal',
+  autoHeight: true,
+
+  effect: 'fade',
+  fadeEffect: {
+    crossFade: true
+  },
+  loop: false,
+  observer: true,
+  observeParents: true,
+  pagination: {
+    el: '.pagination',
+    clickable: true,
+    renderBullet: function (index, className) {
+        console.log($('.our_history--slide')[index]);
+        var year = $('.our_history--slide')[index];
+        year = $(year).attr('data-year');
+       return '<span class="' + className + '">' + year + '</span>';
+     }
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  }
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Our History",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Year"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Swiper",
+        "category": "Hero"
+      }
+    ]
+  }
+{% endschema %}

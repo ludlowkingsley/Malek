@@ -1,0 +1,184 @@
+.swatch {
+  padding: 1.8rem 0;
+  border-top: 1px solid $color-border;
+  // border-bottom: 1px solid $color-border;
+  cursor: pointer;
+
+  [class^="cols"] {
+    grid-column-gap: 1rem;
+
+    grid-row-gap: 1rem;
+  }
+
+  .cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+.swatch h4 {
+  @include good-reg-16;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+
+}
+
+.swatch .readout {
+  @include good-reg-16;
+
+  text-transform: none;
+}
+
+.swatch .dash {
+  margin: 0 10px;
+}
+
+/* Label */
+.swatch .header {
+  margin: 0.5em 0;
+}
+/* Hide radio buttons.*/
+.swatch input {
+  display:none;
+}
+
+
+.swatch .j-button, .swatch label.is-color {
+  border: 1px solid black;
+  padding: 0 0;
+  width: 100%;
+  height: 37px;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  line-height: unset;
+  border: none;
+  position: relative;
+}
+
+.swatch .j-button {
+  border: 1px solid #8e7965;
+  color: #8e7965;
+  width: 88%;
+  padding: 2rem 2.2rem;
+  padding-right: 2.2rem;
+  padding-left: 2.2rem;
+  @include good-med-14;
+  @include mobile-only {
+    width: 85%;
+  }
+
+  @media (max-width: 550px) {
+    width: 100%;
+  }
+}
+
+.swatch-element {
+  width: 100%;
+  margin-bottom: 10px;
+
+
+
+  // padding-right: 2rem;
+  // padding-bottom: 2rem;
+}
+
+.swatch label.is-color {
+  border: .5px solid #DDDDDD;
+}
+
+
+
+
+// .swatch-element label {  }
+// .color.swatch-element label { padding:0; }
+/* Styling selected swatch */
+/* Slightly raised */
+.swatch input:checked + label .check-box {
+  background-color: black;
+
+  /* background-color: black;
+  color: white; */
+  -webkit-transition: all .2s;
+  -o-transition: all .2s;
+  -moz-transition: all .2s;
+  transition: all .2s;
+
+}
+
+.swatch .swatch-element:hover label .checkbox {
+  background-color: black;
+  /*color: white; */
+  -webkit-transition: all .2s;
+  -o-transition: all .2s;
+  -moz-transition: all .2s;
+  transition: all .2s;
+
+}
+
+.swatch input:checked + label.is-color {
+  border-bottom: 3px solid $color-border;
+
+}
+
+.swatch input:checked + label.j-button {
+  color: $white;
+  background: $lightBrown;
+}
+
+/* Image with the cross in it */
+.crossed-out { position:absolute; width:100%; height:100%; left:0; top:0; }
+.swatch .swatch-element .crossed-out { display:none; }
+.swatch .swatch-element.soldout .crossed-out { display:block; }
+.swatch .swatch-element.soldout label {
+  filter: alpha(opacity=60); /* internet explorer */
+  -khtml-opacity: 0.6;      /* khtml, old safari */
+  -moz-opacity: 0.6;       /* mozilla, netscape */
+  opacity: 0.6;           /* fx, safari, opera */
+}
+
+/* Tooltips */
+.swatch .tooltip {
+  display: none;
+}
+
+
+
+.swatch.error {
+  background-color:#E8D2D2!important;
+  color:#333!important;
+  padding:1em;
+  -webkit-border-radius:5px;
+     -moz-border-radius:5px;
+          border-radius:5px;
+}
+.swatch.error p {
+  margin:0.7em 0;
+}
+.swatch.error p:first-child {
+  margin-top:0;
+}
+.swatch.error p:last-child {
+  margin-bottom:0;
+}
+.swatch.error code {
+  font-family:monospace;
+}

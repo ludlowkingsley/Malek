@@ -1,0 +1,29 @@
+{% if shop.metafields.custom_fields["size_guide"] != blank %}
+  <section class="size_guide" style="display: none;">
+    <div class="container">
+      <div class="size_guide--flex-container d-flex align-items-center justify-content-center">
+
+        <div class="size_guide--table">
+          <div class="size_guide--close-container">
+            {% include "icon-close" %}
+          </div>
+          <div class="size_guide--inner-container">
+
+            <div class="size_guide--heading">
+              <h2 class="size_guide--title">Size Guide</h2>
+              <div class="size_guide--toggle-container">
+                <a href="#" class="size_guide--toggle active" data-index="0">INCHES</a>
+                <a href="#" class="size_guide--toggle" data-index="1">CENTIMETERS</a>
+              </div>
+            </div>
+            {% for item in shop.metafields.custom_fields["size_guide"] %}
+              <div class="size_guide--t table-{{ forloop.index0 }} {% if forloop.index0 > 0 %}hide{% endif %}">
+                {{ item["size_guide"] }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}

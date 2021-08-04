@@ -1,0 +1,63 @@
+.footer {
+  padding: 10rem 0;
+  border-top: 1px solid #352D1A;
+  @include mobile-only {
+    text-align: center;
+  }
+  &--logo-container {
+    @include tablet-up {
+      margin-right: 8rem;
+    }
+
+    @include mobile-only {
+      margin-bottom: 2rem;
+    }
+  }
+
+  ul {
+    padding: 0;
+    @include mobile-only {
+      margin-bottom: 3rem;
+    }
+  }
+
+  &--nav-main-li {
+    @include tablet-up {
+      margin-right: 8rem;
+    }
+    @include tiempos-reg-23;
+  }
+
+  &--nav-li {
+    @include good-reg-16;
+    margin: 5px 0;
+    @include mobile-only {
+      font-size: 1.4rem;
+    }
+  }
+
+  &--legal {
+    text-align: right;
+    @include good-reg-16;
+    @include mobile-only {
+      text-align: center;
+    }
+    p {
+      margin: 0;
+    }
+  }
+
+  &--submark {
+    position: relative;
+    margin-bottom: 0px;
+    svg {
+      max-width: 6rem;
+      @include mobile-only {
+            max-width: 7rem;
+      }
+    }
+  }
+
+
+
+}

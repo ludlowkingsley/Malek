@@ -1,0 +1,38 @@
+<section class="product-heading" data-section-id="{{ section.id }}" data-section-type="product">
+  <div class="container">
+    <div class="row">
+      <div class="img-container col-md-7">
+        {% include "product-detail-image" %}
+      </div>
+      <div class="col-md-5 product-detail-container">
+        <div class="product-detail-inner-container">
+          {% include "product-details" %}
+          {% include "product-detail-form" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- include "product-branded-content" -%}
+{%- include "product-branded-slideshow" -%}
+{%- include "product-branded-icon-set" -%}
+{%- include "product-render" -%}
+{%- include "product-material-highlights" -%}
+{%- include "product-featured-collection" -%}
+{%- include 'product-size-guide' -%}
+
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,159 @@
+<section class="image_txt_swiper">
+  <div class="container">
+    <div class="image_txt_swiper--swiper-container swiper-container">
+      <div class="swiper-wrapper">
+        {% assign count = 1 %}
+        {% assign size = section.blocks.size %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'slide' %}
+              <div class="swiper-slide lazyload">
+                <div class="d-md-flex">
+                  {% if block.settings.title != blank %}
+                    <div class="image_txt_swiper--img-container">
+                      {% include 'responsive-image' with image: block.settings.img, image_class: "css-class", wrapper_class: "wrapper-css-class", max_width: 570, max_height: 800 %}
+                    </div>
+                  {% endif %}
+                  <div class="image_txt_swiper--txt-container d-flex flex-column justify-content-center">
+                    <div class="image_txt_swiper--inner-container">
+                      {% if block.settings.title != blank %}
+                        <h2 class="image_txt_swiper--title">{{ block.settings.title }}</h2>
+                        <div class="image_txt_swiper--line"></div>
+                      {% endif %}
+
+                      {% if block.settings.subtitle != blank %}
+                        <h3 class="image_txt_swiper--subtitle">{{ block.settings.subtitle }}</h3>
+                      {% endif %}
+                      {% if block.settings.desc != blank %}
+                        <div class="image_txt_swiper--desc">
+                          {{ block.settings.desc }}
+                        </div>
+                      {% endif %}
+
+
+
+                      {% if block.settings.button_link != blank %}
+                        <a href="{{ block.settings.button_link }}">
+                          <button type="button" name="button" class="image_txt_swiper--button button-circle">
+                            {%- if block.settings.button_label != blank -%}
+                              {{ block.settings.button_label }}
+                            {%- else -%}
+                                LEARN MORE
+                            {%- endif -%}
+                          </button>
+                        </a>
+
+                      {% endif %}
+
+                      <div class="d-flex align-items-center justify-content-center  mobile-hide">
+
+                        <div class="image_txt_swiper--counter">0{{ forloop.index }} / 0{{ size }}</div>
+                        <div class="swiper-button-prev">
+                          {% include "icon-arrow-left" %}
+                        </div>
+                        <div class="swiper-button-next">
+                          {% include "icon-arrow-right" %}
+                        </div>
+
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                </div>
+
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+var swiper1 = new Swiper('.image_txt_swiper--swiper-container', {
+  direction: 'horizontal',
+  loop: false,
+  observer: true,
+  observeParents: true,
+  observeSlideChildren: true,
+  spaceBetween: 120,
+  pagination: {
+    el: ".image_txt_swiper--swiper-container .swiper-pagination",
+    clickable: true
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  }
+});
+</script>
+
+
+
+{% schema %}
+  {
+    "name": "Image Text Swiper",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Image Text Swiper"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Image with text"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo image"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image Text Swiper",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

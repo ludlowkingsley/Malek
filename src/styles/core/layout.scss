@@ -1,0 +1,97 @@
+html {
+  background-color: $color-body;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+main {
+  background-color: $color-body;
+
+}
+
+
+section {
+  overflow: hidden;
+}
+
+
+.container {
+	width: 92%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	max-width: 1500px;
+
+	@include tablet-down {
+
+			width: 96%;
+
+	}
+	@include mobile-only {
+    width: 90%;
+		// padding: 0 2.5rem;
+		max-width: unset;
+	}
+}
+
+.shopify-challenge__container {
+  padding: 10rem 0;
+}
+
+body {
+  padding-top: 9rem;
+}
+
+body.announcement-enabled {
+  padding-top: 12rem;
+  @media (max-width: 1050px) {
+    padding-top: 12rem;
+  }
+}
+
+body.template-index {
+  padding-top: 0;
+}
+
+.row {
+    --bs-gutter-x: 2.5rem;
+}
+
+.swatch-cloud {
+  background: #FFFFFF;
+}
+
+
+.swatch-moon {
+  background: #E9E7E0;
+}
+
+.swatch-mist {
+  background: #D1D7D3;
+}
+
+.swatch-earth {
+  background: #E2D4D0;
+}
+
+.swatch-desert {
+  background: #DED9CD;
+}
+
+.swatch-fog {
+  background: #DCDDDD;
+}
+
+.swatch-smoke {
+  background: #AFB2B1;
+}

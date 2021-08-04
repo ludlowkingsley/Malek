@@ -1,0 +1,53 @@
+<section class="legal">
+  <div class="container">
+    {% assign aside = false %}
+    {% if section.blocks.size > 1 %}
+      {% assign aside = true %}
+    {% endif %}
+
+    <div class="{% if aside %}row{% endif %}">
+      {% if aside %}
+        <aside class="legal--aside col-md-3">
+          <nav class="legal--nav">
+            <ul class="legal--ul">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'sections' %}
+                    {% assign anchor = block.settings.title | downcase %}
+                    {% assign anchor = anchor | replace: " ", "-" %}
+                    <li class="legal--li">
+                      <a href="#{{ anchor }}">{{ block.settings.title }}</a>
+                    </li>
+                {% endcase %}
+              {% endfor %}
+            </ul>
+          </nav>
+
+        </aside>
+      {% endif %}
+
+      <article class="legal--article {% if aside %}col-md-9{% endif %}">
+        <div class="">
+          <h1 class="legal--title">{{ section.settings.title }}</h1>
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'sections' %}
+                {% assign anchor = block.settings.title | downcase %}
+                {% assign anchor = anchor | replace: " ", "-" %}
+
+                <div id="{{ anchor }}" class="legal--section">
+                  <h2 class="legal--section-title">{{ block.settings.title }}</h2>
+                  <div class="legal--section-desc">
+                    {{ block.settings.desc }}
+                  </div>
+                </div>
+
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </article>
+    </div>
+
+
+  </div>
+</section>

@@ -1,0 +1,94 @@
+<section class="care_guide_links">
+  <div class="">
+    <ul class="care_guide_links--ul d-md-flex text-md-center justify-content-center align-items-center">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'material' %}
+            <li class="care_guide_links--li">
+              {% assign anchor = block.settings.title | downcase %}
+              {% assign anchor = anchor | replace: ' ', '-' %}
+              {% assign anchor = anchor | replace: '&', 'and' %}
+
+              <a href="#{{ anchor }}">{{ block.settings.title }}</a>
+            </li>
+        {% endcase %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="care_guide">
+  <div class="container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'material' %}
+          {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+            {% assign anchor = block.settings.title | downcase %}
+            {% assign anchor = anchor | replace: ' ', '-' %}
+            {% assign anchor = anchor | replace: '&', 'and' %}
+            <div id="{{ anchor }}" class="row care_guide--row {{ thecycle }}">
+              {% if thecycle == 'odd' %}
+                <div class="col-lg d-flex justify-content-center flex-column care_guide--img-container left">
+                  <div class="lazyload care_guide--img" data-bgset="{% include 'responsive-bg-image', image: block.settings.img %}"></div>
+                  <!-- {% include 'responsive-image' with image: block.settings.img, image_class: "care_guide--img", wrapper_class: "care_guide--img-container", max_width: 630, max_height: 425 %} -->
+                </div>
+              {% endif %}
+
+
+              <div class="col-lg d-flex justify-content-center flex-column care_guide--txt-container">
+                {% if block.settings.title != blank %}
+                  <h2 class="care_guide--title">{{ block.settings.title }}</h2>
+                {% endif %}
+                {% if block.settings.desc != blank %}
+                  <div class="care_guide--desc">{{ block.settings.desc }}</div>
+                {% endif %}
+              </div>
+
+              {% if thecycle == 'even' %}
+                <div class="col-lg d-flex justify-content-center flex-column care_guide--img-container right">
+                  <div class="lazyload care_guide--img" data-bgset="{% include 'responsive-bg-image', image: block.settings.img %}"></div>
+                  <!-- {% include 'responsive-image' with image: block.settings.img, image_class: "care_guide--img", wrapper_class: "care_guide--img-container", max_width: 630, max_height: 425 %} -->
+                </div>
+              {% endif %}
+
+            </div>
+        {% endcase %}
+      {% endfor %}
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Care Guide Content",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Care Guide Content"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "material",
+        "name": "Material",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

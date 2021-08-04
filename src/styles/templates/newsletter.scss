@@ -1,0 +1,30 @@
+.newsletter {
+  padding: 10rem 0;
+  text-align: center;
+
+  &--inner-container {
+    @include max-width(50);
+  }
+
+  &--title {
+    margin-bottom: 20px;
+  }
+
+  &--form-container {
+    margin-bottom: 70px;
+  }
+
+  &--desc {
+
+  }
+
+  .form-actual {
+    position: relative;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

@@ -1,0 +1,43 @@
+.material_highlights {
+  background: $lightBrown;
+  padding: 5rem 0;
+
+  &--inner-container {
+    position: relative;
+    padding: 15rem 0;
+
+  }
+
+  .highlights {
+    @include max-width(100);
+    text-align: center;
+    position: relative;
+    color: $white;
+    &--title {
+      @include tiempos-reg-32;
+      margin-bottom: 10px;
+
+    }
+
+    &--item {
+      @include mobile-only {
+        padding-bottom: 3rem;
+        @include max-width(25);
+      }
+    }
+
+    &--desc {
+      @include mobile-only {
+        max-width: 22rem;
+        margin: auto;
+      }
+    }
+
+    &--desc, &--desc p {
+      @include good-reg-16;
+
+    }
+  }
+
+
+}

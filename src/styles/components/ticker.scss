@@ -1,0 +1,51 @@
+/* --------------------------------------------------------------------------
+TICKER
+-----------------------------------------------------------------------------*/
+.ticker {
+  padding-bottom: 0;
+  overflow: hidden;
+  background: $beige;
+  padding: 25px 0;
+  margin: 10px 0;
+  color: white;
+  display: block;
+  &:hover {
+    color: white;
+    opacity: 1;
+  }
+
+}
+
+.ticker .item-wrap {
+  transform: translateX(0px);
+  width: 100%;
+  position: relative;
+  white-space: nowrap;
+  display: flex;
+}
+
+.item {
+  text-align: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  p {
+    margin: 0 60px;
+    text-transform: uppercase;
+    @include good-reg-16;
+  }
+}
+
+.item a {
+  text-decoration: none;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  @include good-reg-16;
+  height: 100%;
+  padding: 10px 0;
+}

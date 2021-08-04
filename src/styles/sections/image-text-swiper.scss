@@ -1,0 +1,132 @@
+.image_txt_swiper {
+  padding: 10rem 0;
+  @include mobile-only {
+    padding: 5rem 0;
+  }
+  .swiper-container {
+    overflow: visible;
+  }
+
+  &--title {
+    @include tablet-up {
+      @include tiempos-reg-48;
+    }
+  }
+
+  &--subtitle {
+    @include good-reg-20;
+    text-transform: uppercase;
+  }
+
+  &--counter {
+    @include good-med-14;
+  }
+
+  &--line {
+    height: 60px;
+    border-right: 1px solid black;
+    width: 1px;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    margin: 15px auto;
+  }
+
+
+  &--img-container {
+    width: 50%;
+    @include mobile-only {
+      width: 100%;
+
+      .wrapper-css-class {
+            max-width: 35rem !important;
+      }
+
+    }
+    img {
+      border-radius: 25rem;
+      @include mobile-only {
+
+      }
+    }
+  }
+
+  &--txt-container {
+    width: 50%;
+    padding: 0 2rem;
+    text-align: center;
+    @include mobile-only {
+      width: 100%;
+    }
+
+  }
+
+  &--inner-container {
+    @include max-width(43);
+  }
+
+  &--button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  // .swiper-slide-next {
+  //       right: 10rem;
+  // }
+  //
+  // .swiper-slide-prev {
+  //       right: 8rem;
+  // }
+
+    &--img-container {
+      @include mobile-only {
+        margin-bottom: 5rem;
+      }
+    }
+
+  .swiper-button-next, .swiper-button-prev {
+    position: relative;
+    right: unset;
+    margin: 0 5px;
+    left: 2rem;
+    top: unset;
+    @include mobile-only {
+      left: 0rem;
+    }
+  }
+
+  .swiper-slide-next {
+    position: relative;
+
+
+
+
+    @include tablet-up {
+      left: -13rem;
+
+    }
+    @media (min-width: 1000px ){
+      left: -14rem;
+    }
+
+    @media (min-width: 1300px ){
+        left: -21rem;
+    }
+
+  }
+
+  .swiper-pagination-bullets {
+    bottom: -3rem !important;
+    @include tablet-up {
+      display: none;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    // background: #fff;
+    // opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #4B4232;
+  }
+}

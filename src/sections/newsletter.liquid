@@ -1,0 +1,87 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Newsletter" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the newsletter section
+  - Subheading: description of the newsletter section
+{%- endcomment -%}
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter--inner-container">
+      {% if section.settings.section_title != blank %}
+        <h2 class="newsletter--title">{{ section.settings.section_title }}</h2>
+      {% endif %}
+      <div class="newsletter--form-container">
+
+        <form id="klaviyo_popup" class="klaviyo_gdpr_embed_{{ section.settings.list_id }}" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+            <input type="hidden" name="g" value="{{ section.settings.list_id }}">
+            <input type="hidden" name="$fields" value="$consent">
+            <input type="hidden" name="$list_fields" value="$consent">
+            <input type="hidden" name="$consent" value="email">
+            <div class="klaviyo_messages">
+              <div class="success_message alert alert-success" style="display:none;"></div>
+              <div class="error_message alert alert-danger" style="display:none;"></div>
+            </div>
+            <div class="form-actual">
+              <div class="form-group">
+                <input type="email" value="" name="email" id="k_id_email" placeholder="Email" />
+              </div>
+              <button type="submit" class="btn btn-primary-underline">ENTER</button>
+            </div>
+          </form>
+          <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+          <script type="text/javascript">
+            KlaviyoSubscribe.attachToForms('#klaviyo_popup', {
+              hide_form_on_success: true,
+              success_message: '{{ "general.password_page.signup_form_success" | t }}',
+
+            });
+          </script>
+
+    
+
+
+
+      </div>
+      {% if section.settings.desc != blank %}
+          <div class="newsletter--desc">{{ section.settings.desc }}</div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</section>
+
+{% schema %}
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Heading",
+        "default": "Subscribe to our newsletter"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type": "paragraph",
+        "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+      },
+      {
+        "id": "list_id",
+        "type": "text",
+        "label": "Newsletter List ID"
+      }
+    ],
+    "presets": [{
+      "name": "Newsletter",
+      "category": "Promotional"
+    }]
+  }
+{% endschema %}
